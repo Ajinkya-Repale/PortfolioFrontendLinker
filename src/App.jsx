@@ -13,7 +13,7 @@ import Experience from "./components/Experience";
 
 // Admin components
 import AdminLogin from "./components/AdminLogin";
-import AdminRegister from "./components/AdminRegister";
+
 import AdminPanel from "./components/AdminPanel";  // ← single source of truth
 
 // Styles
@@ -65,7 +65,7 @@ export default function App() {
 
         {/* ADMIN LOGIN / REGISTER */}
         <Route path="/admin/login"    element={<AdminLogin setAdmin={setAdmin} />} />
-        <Route path="/admin/register" element={<AdminRegister />} />
+       
 
         {/* ADMIN PANEL — protected, redirects to login if no token */}
         <Route

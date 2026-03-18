@@ -1,0 +1,397 @@
+/* ============================================
+   ADMIN EDUCATION — DEDICATED STYLES
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-main:          #0f1629;
+  --bg-card:          #141e35;
+  --bg-card-hover:    #1a2640;
+  --bg-input:         #0f1629;
+  --bg-sidebar:       #0b1120;
+
+  --accent:           #3b82f6;
+  --accent-glow:      rgba(59,130,246,0.22);
+  --accent-hover:     #60a5fa;
+  --accent-danger:    #ef4444;
+  --accent-save:      #22c55e;
+  --accent-save-glow: rgba(34,197,94,0.25);
+  --accent-warn:      #f59e0b;
+  --accent-warn-glow: rgba(245,158,11,0.2);
+
+  --text-primary:   #f0f4ff;
+  --text-secondary: #94a3b8;
+  --text-muted:     #4a5568;
+
+  --border:       rgba(59,130,246,0.13);
+  --border-hover: rgba(59,130,246,0.38);
+  --border-warn:  rgba(245,158,11,0.45);
+  --divider:      rgba(255,255,255,0.05);
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+
+  --shadow: 0 4px 24px rgba(0,0,0,0.45);
+  --glow:   0 0 20px rgba(59,130,246,0.14);
+  --trans:  all 0.22s cubic-bezier(0.4,0,0.2,1);
+
+  --font-ui:      'Plus Jakarta Sans', sans-serif;
+  --font-display: 'Syne', sans-serif;
+}
+
+/* ============================================
+   PAGE
+   ============================================ */
+
+.education-admin-page{
+  width:100%;
+  min-height:100vh;
+  padding:40px 48px;
+  background:var(--bg-main);
+  display:flex;
+  flex-direction:column;
+  font-family:var(--font-ui);
+  color:var(--text-primary);
+}
+
+/* ============================================
+   TITLE
+   ============================================ */
+
+.education-admin-title{
+  font-family:var(--font-display);
+  font-size:1.75rem;
+  font-weight:800;
+  margin-bottom:32px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.education-admin-title::after{
+  content:"";
+  flex:1;
+  height:1px;
+  background:linear-gradient(to right,var(--border-hover),transparent);
+}
+
+/* ============================================
+   FORM CARD
+   ============================================ */
+
+.education-form-card{
+  width:100%;
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:28px 32px 26px;
+  box-shadow:var(--shadow);
+  margin-bottom:32px;
+  transition:var(--trans);
+}
+
+.education-form-card:hover{
+  border-color:var(--border-hover);
+  box-shadow:var(--shadow),var(--glow);
+}
+
+.education-form-card--editing{
+  border-color:var(--border-warn);
+  box-shadow:var(--shadow),0 0 0 3px var(--accent-warn-glow);
+}
+
+/* mode label */
+
+.education-form-mode{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:.72rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--text-muted);
+  margin-bottom:22px;
+}
+
+.education-form-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 6px var(--accent);
+}
+
+.education-form-dot--warn{
+  background:var(--accent-warn);
+  box-shadow:0 0 8px var(--accent-warn);
+}
+
+/* ============================================
+   FORM GRID
+   ============================================ */
+
+.education-form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px 24px;
+}
+
+.education-field{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.education-field label{
+  font-size:.72rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.07em;
+  color:var(--text-secondary);
+}
+
+.education-field input{
+  background:var(--bg-input);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  padding:10px 14px;
+  color:var(--text-primary);
+  font-size:.875rem;
+  outline:none;
+  transition:var(--trans);
+}
+
+.education-field input::placeholder{
+  color:var(--text-muted);
+}
+
+.education-field input:focus{
+  border-color:var(--accent);
+  background:#111d35;
+  box-shadow:0 0 0 3px var(--accent-glow);
+}
+
+/* ============================================
+   FORM ACTIONS
+   ============================================ */
+
+.education-form-actions{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top:24px;
+  padding-top:20px;
+  border-top:1px solid var(--divider);
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+.btn{
+  font-family:var(--font-ui);
+  font-size:.875rem;
+  font-weight:600;
+  padding:10px 24px;
+  border-radius:var(--radius-sm);
+  border:none;
+  cursor:pointer;
+  transition:var(--trans);
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+}
+
+.btn-primary{
+  background:var(--accent);
+  color:#fff;
+}
+
+.btn-primary:hover{
+  background:var(--accent-hover);
+  transform:translateY(-1px);
+  box-shadow:0 4px 16px rgba(59,130,246,0.4);
+}
+
+.btn-save{
+  background:var(--accent-save);
+  color:#fff;
+}
+
+.btn-save:hover{
+  background:#16a34a;
+  transform:translateY(-1px);
+  box-shadow:0 4px 18px var(--accent-save-glow);
+}
+
+.btn-ghost{
+  background:transparent;
+  color:var(--text-secondary);
+  border:1px solid var(--border);
+}
+
+.btn-ghost:hover{
+  background:var(--bg-card-hover);
+  color:var(--text-primary);
+  border-color:var(--border-hover);
+}
+
+.btn-danger{
+  background:rgba(239,68,68,0.1);
+  color:var(--accent-danger);
+  border:1px solid rgba(239,68,68,0.22);
+}
+
+.btn-danger:hover{
+  background:var(--accent-danger);
+  color:#fff;
+  border-color:transparent;
+}
+
+.btn-sm{
+  padding:7px 14px;
+  font-size:.8rem;
+}
+
+/* ============================================
+   EDUCATION LIST
+   ============================================ */
+
+.education-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  width:100%;
+}
+
+/* education item */
+
+.education-item{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:16px 20px;
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  transition:var(--trans);
+  position:relative;
+}
+
+.education-item::before{
+  content:'';
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:3px;
+  background:var(--accent);
+  opacity:0;
+  transition:var(--trans);
+}
+
+.education-item:hover{
+  background:var(--bg-card-hover);
+  border-color:var(--border-hover);
+  transform:translateX(3px);
+  box-shadow:var(--shadow);
+}
+
+.education-item:hover::before{
+  opacity:1;
+}
+
+/* info */
+
+.education-item-info{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.education-item-degree{
+  font-weight:700;
+  font-size:.95rem;
+}
+
+.education-item-college{
+  font-size:.8rem;
+  color:var(--text-secondary);
+}
+
+.education-item-year{
+  font-size:.72rem;
+  font-weight:600;
+  color:var(--accent-hover);
+  background:rgba(59,130,246,0.15);
+  padding:3px 10px;
+  border-radius:999px;
+  width:fit-content;
+}
+
+/* actions */
+
+.education-item-actions{
+  display:flex;
+  gap:8px;
+  margin-left:auto;
+}
+
+/* ============================================
+   EMPTY STATE
+   ============================================ */
+
+.education-empty{
+  text-align:center;
+  padding:52px 24px;
+  color:var(--text-muted);
+  font-size:.875rem;
+  background:var(--bg-card);
+  border:1px dashed var(--border);
+  border-radius:var(--radius-md);
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--bg-sidebar);}
+::-webkit-scrollbar-thumb{background:rgba(59,130,246,0.3);border-radius:99px;}
+::-webkit-scrollbar-thumb:hover{background:var(--accent);}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width:900px){
+
+  .education-admin-page{
+    padding:28px 24px;
+  }
+
+  .education-form-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media (max-width:600px){
+
+  .education-item{
+    flex-wrap:wrap;
+  }
+
+  .education-item-actions{
+    width:100%;
+    justify-content:flex-end;
+    margin-left:0;
+  }
+
+}

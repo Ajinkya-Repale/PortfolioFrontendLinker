@@ -1,0 +1,181 @@
+.projects-section {
+  padding: 120px 8%;
+  position: relative;
+}
+
+/* ── header ── */
+.projects-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.projects-header h2 {
+  font-size: 46px;
+  margin-bottom: 12px;
+  background: linear-gradient(90deg, #60a5fa, #2563eb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.projects-header p {
+  max-width: 650px;
+  margin: 0 auto;
+  opacity: 0.7;
+  line-height: 1.6;
+}
+
+/* ── container ── */
+.projects-container {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+/* ── row layout ── */
+.project-showcase {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 60px;
+}
+
+.project-showcase.reverse {
+  flex-direction: row-reverse;
+}
+
+/* ── image side ── */
+.project-image {
+  flex: 0 0 48%;
+  max-width: 48%;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  padding: 12px;                        /* ADDED: breathing room around screenshot */
+  background: rgba(15, 23, 42, 0.8);   /* ADDED: dark bg visible behind image */
+  box-sizing: border-box;               /* ADDED: padding included in size */
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;                   /* ADDED: slight rounding on image */
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.project-image:hover img {
+  transform: scale(1.05);
+}
+
+/* ── overlay ── */
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(2, 6, 23, 0.6));
+  pointer-events: none;
+}
+
+/* ── content side ── */
+.project-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* ── title ── */
+.project-content h3 {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: left;
+}
+
+/* ── description ── */
+.project-description {
+  line-height: 1.7;
+  opacity: 0.75;
+  max-width: 480px;
+  text-align: left;
+}
+
+/* ── tech stack ── */
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-start;
+}
+
+.project-tech span {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  background: rgba(37, 99, 235, 0.15);
+  border: 1px solid rgba(37, 99, 235, 0.4);
+  color: #93c5fd;
+}
+
+/* ── buttons ── */
+.project-links {
+  display: flex;
+  gap: 14px;
+  margin-top: 8px;
+  justify-content: flex-start;
+}
+
+.project-btn {
+  padding: 10px 22px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.project-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
+}
+
+.project-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.project-btn.outline {
+  background: transparent;
+  border: 1px solid #2563eb;
+  color: #60a5fa;
+}
+
+/* ── responsive ── */
+@media (max-width: 900px) {
+  .project-showcase,
+  .project-showcase.reverse {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .project-image {
+    flex: 0 0 auto;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .project-content {
+    text-align: center;
+    align-items: center;
+  }
+
+  .project-description {
+    max-width: 100%;
+  }
+}

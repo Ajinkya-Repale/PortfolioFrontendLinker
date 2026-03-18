@@ -1,0 +1,310 @@
+/* ------------------------------
+GLOBAL RESET
+------------------------------ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ------------------------------
+THEME VARIABLES
+------------------------------ */
+:root {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+
+  --accent: #2563eb;
+  --accent-light: #60a5fa;
+
+  --border: rgba(0,0,0,0.08);
+
+  --card-bg: rgba(255,255,255,0.75);
+
+  --radius: 14px;
+
+  --transition: all .45s cubic-bezier(.4,0,.2,1);
+}
+
+/* ------------------------------
+DARK MODE
+------------------------------ */
+.dark {
+  --bg-primary: #020617;
+  --bg-secondary: #0f172a;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+
+  --border: rgba(255,255,255,0.08);
+
+  --card-bg: rgba(255,255,255,0.05);
+}
+
+/* ------------------------------
+BODY
+------------------------------ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  transition:
+    background .7s cubic-bezier(.4,0,.2,1),
+    color .7s cubic-bezier(.4,0,.2,1);
+}
+
+/* ------------------------------
+GLOBAL TRANSITIONS
+FIXED: excluded .skill-card so its own transition isn't overridden
+------------------------------ */
+*:not(.skill-card):not(.skill-card *),
+*:not(.skill-card)::before,
+*:not(.skill-card)::after {
+  transition:
+    background-color .45s cubic-bezier(.4,0,.2,1),
+    color .45s cubic-bezier(.4,0,.2,1),
+    border-color .45s cubic-bezier(.4,0,.2,1),
+    box-shadow .45s cubic-bezier(.4,0,.2,1);
+}
+
+/* ------------------------------
+NAVBAR FIXED
+------------------------------ */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 8%;
+  background-color: #ffffff;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+  transition: var(--transition);
+}
+
+.dark .navbar {
+  background-color: #02101f;
+}
+
+/* ------------------------------
+LOGO
+------------------------------ */
+.logo {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: .5px;
+  color: var(--text-primary);
+}
+
+/* ------------------------------
+NAV LINKS
+------------------------------ */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-links a {
+  font-size: .95rem;
+  position: relative;
+  color: var(--text-primary);
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: var(--accent);
+  transition: width .35s ease;
+}
+
+.nav-links a:hover {
+  color: var(--text-primary);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* ------------------------------
+MODE TOGGLE BUTTON
+------------------------------ */
+.mode-toggle {
+  margin-left: 24px;
+  padding: 8px 20px;
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: .3px;
+  transition:
+    transform .25s ease,
+    background .25s ease,
+    color .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease;
+}
+
+.mode-toggle:hover {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+  box-shadow: 0 6px 16px rgba(37,99,235,.25);
+  transform: translateY(-1px);
+}
+
+.mode-toggle:active {
+  transform: scale(.96);
+}
+
+.dark .mode-toggle {
+  background: rgba(255,255,255,0.05);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+/* ------------------------------
+TYPOGRAPHY
+------------------------------ */
+h1,h2,h3,h4 {
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+/* ------------------------------
+LINKS
+------------------------------ */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  opacity: .9;
+}
+
+/* ------------------------------
+BUTTONS
+------------------------------ */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+  background: none;
+}
+
+/* ------------------------------
+CARDS
+------------------------------ */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(12px);
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+/* ------------------------------
+SECTION SPACING
+------------------------------ */
+section {
+  padding: 140px 8%;
+}
+
+/* ------------------------------
+GRADIENT TEXT
+------------------------------ */
+.gradient-text {
+  background: linear-gradient(90deg, var(--accent-light), var(--accent));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ------------------------------
+THEME TRANSITION
+------------------------------ */
+.theme-transition {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-primary);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+  animation: themeFade .7s ease;
+}
+
+@keyframes themeFade {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ------------------------------
+SCROLLBAR
+------------------------------ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 20px;
+}
+
+/* ------------------------------
+RESPONSIVE
+------------------------------ */
+@media(max-width:768px) {
+  .nav-links {
+    gap: 18px;
+  }
+
+  .navbar {
+    padding: 16px 6%;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  section {
+    padding: 100px 6%;
+  }
+}

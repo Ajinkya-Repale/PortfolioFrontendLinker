@@ -1,0 +1,391 @@
+/* ============================================
+   ADMIN EXPERIENCE — DEDICATED STYLES
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ============================================
+   PAGE
+   ============================================ */
+
+.experience-admin-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 40px 48px;
+  background: var(--bg-main);
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-ui);
+  color: var(--text-primary);
+}
+
+/* ============================================
+   TITLE
+   ============================================ */
+
+.experience-admin-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.experience-admin-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--border-hover), transparent);
+}
+
+/* ============================================
+   FORM CARD
+   ============================================ */
+
+.experience-form-card {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px 26px;
+  box-shadow: var(--shadow);
+  margin-bottom: 32px;
+  transition: var(--trans);
+}
+
+.experience-form-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow), var(--glow);
+}
+
+.experience-form-card--editing {
+  border-color: var(--border-warn);
+  box-shadow: var(--shadow), 0 0 0 3px var(--accent-warn-glow);
+}
+
+/* mode label */
+
+.experience-form-mode {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 22px;
+}
+
+/* ============================================
+   FORM GRID
+   ============================================ */
+
+.experience-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 24px;
+}
+
+.experience-form-grid input,
+.experience-form-grid textarea {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  padding: 10px 14px;
+  width: 100%;
+  outline: none;
+  transition: var(--trans);
+}
+
+.experience-form-grid textarea {
+  grid-column: 1 / -1;
+  resize: vertical;
+}
+
+.experience-form-grid input::placeholder,
+.experience-form-grid textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.experience-form-grid input:focus,
+.experience-form-grid textarea:focus {
+  border-color: var(--accent);
+  background: #111d35;
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+/* ============================================
+   FORM ACTIONS
+   ============================================ */
+
+.experience-form-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--divider);
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+.btn {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 10px 24px;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: var(--trans);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(59,130,246,0.4);
+}
+
+.btn-save {
+  background: var(--accent-save);
+  color: #fff;
+  font-weight: 700;
+}
+
+.btn-save:hover {
+  background: #16a34a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 18px var(--accent-save-glow);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.btn-ghost:hover {
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+}
+
+.btn-danger {
+  background: rgba(239,68,68,0.1);
+  color: var(--accent-danger);
+  border: 1px solid rgba(239,68,68,0.22);
+}
+
+.btn-danger:hover {
+  background: var(--accent-danger);
+  color: #fff;
+  border-color: transparent;
+}
+
+.btn-sm {
+  padding: 7px 14px;
+  font-size: 0.8rem;
+}
+
+/* ============================================
+   LIST HEADER
+   ============================================ */
+
+.experience-list-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+}
+
+.experience-count-badge {
+  background: rgba(59,130,246,0.12);
+  color: var(--accent-hover);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 9px;
+  border-radius: 999px;
+}
+
+/* ============================================
+   EXPERIENCE LIST
+   ============================================ */
+
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* item card */
+
+.experience-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: var(--trans);
+  position: relative;
+}
+
+/* left accent bar */
+
+.experience-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--accent);
+  opacity: 0;
+  transition: var(--trans);
+}
+
+.experience-item:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+  transform: translateX(3px);
+  box-shadow: var(--shadow);
+}
+
+.experience-item:hover::before {
+  opacity: 1;
+}
+
+.experience-item--editing {
+  border-color: var(--accent-warn);
+  box-shadow: 0 0 0 2px var(--accent-warn-glow);
+}
+
+.experience-item--editing::before {
+  opacity: 1;
+  background: var(--accent-warn);
+}
+
+/* ============================================
+   INFO
+   ============================================ */
+
+.experience-item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.experience-company {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.experience-role {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.experience-years {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--accent-hover);
+  background: rgba(59,130,246,0.15);
+  padding: 3px 10px;
+  border-radius: 999px;
+  width: fit-content;
+}
+
+.experience-desc {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ============================================
+   ACTIONS
+   ============================================ */
+
+.experience-item-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+/* ============================================
+   EMPTY STATE
+   ============================================ */
+
+.experience-empty {
+  text-align: center;
+  padding: 52px 24px;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  background: var(--bg-card);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-md);
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-sidebar); }
+::-webkit-scrollbar-thumb { background: rgba(59,130,246,0.3); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width:900px) {
+
+  .experience-admin-page {
+    padding: 28px 24px;
+  }
+
+  .experience-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width:600px) {
+
+  .experience-item {
+    flex-wrap: wrap;
+  }
+
+  .experience-item-actions {
+    width: 100%;
+    justify-content: flex-end;
+    margin-left: 0;
+  }
+
+}

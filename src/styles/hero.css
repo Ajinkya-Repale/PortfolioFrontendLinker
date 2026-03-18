@@ -1,0 +1,339 @@
+/* ============================================
+   HERO — Clean Redesign
+============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@800;900&display=swap');
+
+/* ============================================
+   SECTION
+============================================ */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(80px, 10vw, 120px) 8% clamp(40px, 6vw, 80px);
+  overflow: hidden;
+  background: var(--bg-primary);
+}
+
+/* ============================================
+   GRID BACKGROUND
+============================================ */
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(37, 99, 235, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+  animation: gridDrift 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes gridDrift {
+  0% { background-position: 0 0; }
+  100% { background-position: 60px 60px; }
+}
+
+/* ============================================
+   ORBS
+============================================ */
+
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  animation: orbFloat 10s ease-in-out infinite;
+}
+
+.hero-orb--1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.15), transparent 70%);
+  top: -15%;
+  left: -10%;
+}
+
+.hero-orb--2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.1), transparent 70%);
+  bottom: -10%;
+  right: 5%;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(15px, -15px); }
+}
+
+/* ============================================
+   HERO LAYOUT
+============================================ */
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* ============================================
+   MOBILE / TABLET LAYOUT
+============================================ */
+
+@media (max-width: 1024px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 50px;
+    text-align: center;
+  }
+
+  .hero-image-area {
+    order: -1;
+  }
+
+  .hero-text {
+    align-items: center;   /* center on mobile */
+  }
+
+  .hero-summary {
+    text-align: center;
+  }
+}
+
+/* ============================================
+   TEXT AREA
+============================================ */
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;  /* FIXED: all children left-aligned */
+  gap: 0;
+}
+
+/* INTRO */
+
+.hero-intro {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #60a5fa;
+  margin-bottom: 12px;       /* FIXED: tightened */
+  opacity: 0;
+  animation: fadeUp .6s ease forwards .1s;
+}
+
+/* NAME */
+
+.hero-name {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -2px;
+  color: var(--text-primary);
+  margin: 0 0 12px 0;        /* FIXED: tightened */
+}
+
+.hero-name__first,
+.hero-name__last {
+  font-size: clamp(36px, 8vw, 78px);
+}
+
+.hero-name__first {
+  opacity: 0;
+  animation: fadeUp .6s forwards .25s;
+}
+
+.hero-name__last {
+  opacity: 0;
+  animation: fadeUp .6s forwards .4s;
+}
+
+/* ROLE */
+
+.hero-role {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 400;
+  color: #60a5fa;
+  margin: 0 0 16px 0;        /* FIXED: tightened */
+  opacity: 0;
+  animation: fadeUp .6s forwards .55s;
+}
+
+/* SUMMARY */
+
+.hero-summary {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  max-width: 460px;
+  margin-bottom: 32px;       /* FIXED: tightened */
+  text-align: left;          /* FIXED: explicit left align */
+  opacity: 0;
+  animation: fadeUp .6s forwards .7s;
+}
+
+/* ============================================
+   BUTTONS
+============================================ */
+
+.hero-buttons {
+  display: flex;
+  gap: 14px;
+  opacity: 0;
+  animation: fadeUp .6s forwards .85s;
+}
+
+@media (max-width: 600px) {
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-buttons button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* BUTTON PRIMARY */
+
+.btn-primary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(37, 99, 235, .45);
+}
+
+/* BUTTON OUTLINE */
+
+.btn-outline {
+  padding: 13px 26px;
+  border-radius: 10px;
+  border: 1px solid rgba(37, 99, 235, .4);
+  background: rgba(37, 99, 235, .06);
+  color: #60a5fa;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .25s ease;
+}
+
+.btn-outline:hover {
+  background: rgba(37, 99, 235, .15);
+  transform: translateY(-3px);
+}
+
+/* ============================================
+   IMAGE AREA
+============================================ */
+
+.hero-image-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  animation: fadeIn .8s ease forwards .5s;
+}
+
+.hero-image-wrap {
+  position: relative;
+  padding: 14px;
+}
+
+/* IMAGE CARD */
+
+.hero-image-card {
+  width: min(290px, 85vw);
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(37, 99, 235, .2);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, .45),
+    0 0 80px rgba(37, 99, 235, .08);
+  transition: transform .4s ease;
+}
+
+.hero-image-card:hover {
+  transform: translateY(-10px);
+}
+
+.hero-image-card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  display: block;
+}
+
+/* ============================================
+   ANIMATIONS
+============================================ */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ============================================
+   SMALL DEVICE OPTIMIZATION
+============================================ */
+
+@media (max-width: 768px) {
+  .hero-orb--1 {
+    width: 250px;
+    height: 250px;
+  }
+
+  .hero-orb--2 {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 80px 20px 40px;
+  }
+
+  .hero-summary {
+    max-width: 100%;
+  }
+}

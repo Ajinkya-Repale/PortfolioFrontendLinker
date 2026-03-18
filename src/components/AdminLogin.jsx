@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/admin.css";
 
+const BASE_URL = "https://portfoliobackendlinker.onrender.com";
+
 export default function AdminLogin({ setAdmin }) {
   const [adminName, setAdminName] = useState("");
   const [password, setPassword] = useState("");
@@ -16,7 +18,7 @@ export default function AdminLogin({ setAdmin }) {
     setLoading(true);
 
     try {
-      const res = await axios.post("http://localhost:8082/admin/auth/login", {
+      const res = await axios.post(`${BASE_URL}/admin/auth/login`, {
         adminName,
         adminPass: password,
       });
@@ -96,15 +98,6 @@ export default function AdminLogin({ setAdmin }) {
             </button>
           </div>
 
-          <p className="admin-register-text">
-            Want to register?{" "}
-            <span
-              className="admin-register-link"
-              onClick={() => navigate("/admin/register")}
-            >
-              Click here
-            </span>
-          </p>
         </div>
       </div>
     </div>

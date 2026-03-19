@@ -23,7 +23,7 @@ export default function EducationAdmin() {
 
   const fetchEducation = async () => {
     try {
-      const res = await axios.get("http://localhost:8082/education/all");
+      const res = await axios.get("https://portfoliobackendlinker.onrender.com/education/all");
       setEducation(res.data || []);
     } catch (err) {
       console.error("Failed to fetch education:", err);
@@ -53,7 +53,7 @@ export default function EducationAdmin() {
 
     try {
       await axios.post(
-        "http://localhost:8082/education/admin/add",
+        "https://portfoliobackendlinker.onrender.com/education/admin/add",
         form,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -89,7 +89,7 @@ export default function EducationAdmin() {
 
     try {
       await axios.put(
-        `http://localhost:8082/education/admin/edit/${editingId}`,
+        `https://portfoliobackendlinker.onrender.com/education/admin/edit/${editingId}`,
         form,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -110,7 +110,7 @@ export default function EducationAdmin() {
 
     try {
       await axios.delete(
-        `http://localhost:8082/education/admin/delete/${id}`,
+        `https://portfoliobackendlinker.onrender.com/education/admin/delete/${id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 

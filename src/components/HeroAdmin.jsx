@@ -27,7 +27,7 @@ export default function HeroAdmin() {
   const fetchHero = async () => {
     setError(null);
     try {
-      const res = await axios.get("http://localhost:8082/hero/all");
+      const res = await axios.get("https://portfoliobackendlinker.onrender.com/hero/all");
       setHeroData(res.data || []);
     } catch (err) {
       console.error("Failed to fetch hero data:", err);
@@ -42,7 +42,7 @@ export default function HeroAdmin() {
     if (!localStorage.getItem("token")) return alert("Admin login required.");
     setLoading(true);
     try {
-      await axios.post("http://localhost:8082/hero/add", form, {
+      await axios.post("https://portfoliobackendlinker.onrender.com/hero/add", form, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setForm({ introText: "", name: "", role: "", avatarUrl: "" });
@@ -73,7 +73,7 @@ export default function HeroAdmin() {
     setLoading(true);
     try {
       await axios.put(
-        `http://localhost:8082/hero/edit/${editingId}`,
+        `https://portfoliobackendlinker.onrender.com/hero/edit/${editingId}`,
         form,
         { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );
@@ -91,7 +91,7 @@ export default function HeroAdmin() {
     if (!localStorage.getItem("token")) return alert("Admin login required.");
     if (!window.confirm("Delete this hero entry?")) return;
     try {
-      await axios.delete(`http://localhost:8082/hero/delete/${id}`, {
+      await axios.delete(`https://portfoliobackendlinker.onrender.com/hero/delete/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       await fetchHero();

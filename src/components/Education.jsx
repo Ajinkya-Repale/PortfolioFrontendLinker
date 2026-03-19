@@ -11,7 +11,7 @@ export default function Education() {
 
   const fetchEducation = async () => {
     try {
-      const res = await axios.get("http://localhost:8082/education/all");
+      const res = await axios.get("https://portfoliobackendlinker.onrender.com/education/all");
       setEducation(res.data || []);
     } catch (err) {
       console.error("Failed to load education:", err);

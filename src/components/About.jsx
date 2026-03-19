@@ -10,7 +10,7 @@ export default function About() {
   useEffect(() => {
     const fetchAbout = async () => {
       try {
-        const res = await axios.get("http://localhost:8082/about/all");
+        const res = await axios.get("https://portfoliobackendlinker.onrender.com/about/all");
         if (res.data && res.data.length > 0) {
           setAboutData(res.data[0]);
         }

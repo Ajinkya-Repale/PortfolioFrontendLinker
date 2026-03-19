@@ -9,7 +9,7 @@ export default function Experience() {
   useEffect(() => {
     const fetchExperience = async () => {
       try {
-        const res = await axios.get("http://localhost:8082/experience/all");
+        const res = await axios.get("https://portfoliobackendlinker.onrender.com/experience/all");
         setExperience(res.data || []);
       } catch (err) {
         console.error("Failed to load experience:", err);

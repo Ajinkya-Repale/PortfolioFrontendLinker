@@ -20,7 +20,7 @@ export default function Contact() {
   useEffect(() => {
     const fetchContact = async () => {
       try {
-        const res = await axios.get("http://localhost:8082/contact/view");
+        const res = await axios.get("https://portfoliobackendlinker.onrender.com/contact/view");
         if (res.data && res.data.length > 0) {
           setContactData(res.data[0]);
         }

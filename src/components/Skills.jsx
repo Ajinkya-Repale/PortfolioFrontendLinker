@@ -70,7 +70,7 @@ export default function Skills() {
   const [skillGroups, setSkillGroups] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8082/skills/all")
+    axios.get("https://portfoliobackendlinker.onrender.com/skills/all")
       .then(res => {
         const data = res.data;
         const grouped = data.reduce((acc, skill) => {

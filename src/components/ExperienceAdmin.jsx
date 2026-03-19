@@ -25,7 +25,7 @@ export default function ExperienceAdmin() {
 
   const fetchExperience = async () => {
     try {
-      const res = await axios.get("http://localhost:8082/experience/all");
+      const res = await axios.get("https://portfoliobackendlinker.onrender.com/experience/all");
       setExperience(res.data || []);
     } catch (err) {
       console.error("Failed to fetch experience:", err);
@@ -43,7 +43,7 @@ export default function ExperienceAdmin() {
 
     try {
       await axios.post(
-        "http://localhost:8082/experience/admin/add",
+        "https://portfoliobackendlinker.onrender.com/experience/admin/add",
         form,
         { headers: { Authorization: `Bearer ${token()}` } }
       );
@@ -82,7 +82,7 @@ export default function ExperienceAdmin() {
     try {
 
       await axios.put(
-        `http://localhost:8082/experience/admin/edit/${editingId}`,
+        `https://portfoliobackendlinker.onrender.com/experience/admin/edit/${editingId}`,
         form,
         { headers: { Authorization: `Bearer ${token()}` } }
       );
@@ -107,7 +107,7 @@ export default function ExperienceAdmin() {
     try {
 
       await axios.delete(
-        `http://localhost:8082/experience/admin/delete/${id}`,
+        `https://portfoliobackendlinker.onrender.com/experience/admin/delete/${id}`,
         { headers: { Authorization: `Bearer ${token()}` } }
       );
 

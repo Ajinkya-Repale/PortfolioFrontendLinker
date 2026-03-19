@@ -18,7 +18,7 @@ export default function Hero() {
   useEffect(() => {
     const fetchHero = async () => {
       try {
-        const res = await axios.get("http://localhost:8082/hero/all");
+        const res = await axios.get("https://portfoliobackendlinker.onrender.com/hero/all");
         if (res.data.length > 0) {
           const data = res.data[0];
           setHeroData({

@@ -30,7 +30,7 @@ export default function AboutAdmin() {
   const fetchAbouts = async () => {
     setError(null);
     try {
-      const res = await axios.get("http://localhost:8082/about/all");
+      const res = await axios.get("https://portfoliobackendlinker.onrender.com/about/all");
       setAbouts(res.data || []);
     } catch (err) {
       console.error("Failed to fetch about data:", err);
@@ -45,7 +45,7 @@ export default function AboutAdmin() {
     if (!localStorage.getItem("token")) return alert("Admin login required.");
     setLoading(true);
     try {
-      await axios.post("http://localhost:8082/about/add", form, {
+      await axios.post("https://portfoliobackendlinker.onrender.com/about/add", form, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setForm(EMPTY_FORM);
@@ -78,7 +78,7 @@ export default function AboutAdmin() {
     setLoading(true);
     try {
       await axios.put(
-        `http://localhost:8082/about/update/${editingId}`,
+        `https://portfoliobackendlinker.onrender.com/about/update/${editingId}`,
         form,
         { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );
@@ -96,7 +96,7 @@ export default function AboutAdmin() {
     if (!localStorage.getItem("token")) return alert("Admin login required.");
     if (!window.confirm("Delete this about entry?")) return;
     try {
-      await axios.delete(`http://localhost:8082/about/delete/${id}`, {
+      await axios.delete(`https://portfoliobackendlinker.onrender.com/about/delete/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       await fetchAbouts();

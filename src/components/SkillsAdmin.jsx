@@ -163,7 +163,7 @@ export default function SkillsAdmin() {
   const fetchSkills = async () => {
     setError(null);
     try {
-      const res = await axios.get("http://localhost:8082/skills/all");
+      const res = await axios.get("https://portfoliobackendlinker.onrender.com/skills/all");
       setSkills(res.data || []);
     } catch (err) {
       console.error("Failed to fetch skills:", err);
@@ -180,7 +180,7 @@ export default function SkillsAdmin() {
     setLoading(true);
     try {
       await axios.post(
-        "http://localhost:8082/skills/add",
+        "https://portfoliobackendlinker.onrender.com/skills/add",
         { name: selectedSkill.name, group: selectedGroup },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -210,7 +210,7 @@ export default function SkillsAdmin() {
     setLoading(true);
     try {
       await axios.put(
-        `http://localhost:8082/skills/edit/${editingId}`,
+        `https://portfoliobackendlinker.onrender.com/skills/edit/${editingId}`,
         { name: selectedSkill.name, group: selectedGroup },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -229,7 +229,7 @@ export default function SkillsAdmin() {
     if (!id || !token) return alert(!id ? "No ID found." : "Login required.");
     if (!window.confirm("Delete this skill?")) return;
     try {
-      await axios.delete(`http://localhost:8082/skills/delete/${id}`, {
+      await axios.delete(`https://portfoliobackendlinker.onrender.com/skills/delete/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       await fetchSkills();

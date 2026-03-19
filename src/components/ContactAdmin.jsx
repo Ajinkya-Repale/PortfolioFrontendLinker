@@ -28,7 +28,7 @@ export default function ContactAdmin() {
   const fetchContacts = async () => {
     setError(null);
     try {
-      const res = await axios.get("http://localhost:8082/contact/view");
+      const res = await axios.get("https://portfoliobackendlinker.onrender.com/contact/view");
 
       // ── DEBUG: remove after confirming data shows ──
       console.log("Raw response:", res.data);
@@ -57,7 +57,7 @@ export default function ContactAdmin() {
     if (!localStorage.getItem("token")) return alert("Admin login required.");
     setLoading(true);
     try {
-      await axios.post("http://localhost:8082/contact/add", form, {
+      await axios.post("https://portfoliobackendlinker.onrender.com/contact/add", form, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setForm(EMPTY_FORM);
@@ -89,7 +89,7 @@ export default function ContactAdmin() {
     setLoading(true);
     try {
       await axios.put(
-        `http://localhost:8082/contact/edit/${editingId}`,
+        `https://portfoliobackendlinker.onrender.com/contact/edit/${editingId}`,
         form,
         { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );

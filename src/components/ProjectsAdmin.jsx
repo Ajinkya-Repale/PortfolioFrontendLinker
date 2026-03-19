@@ -33,7 +33,7 @@ export default function ProjectsAdmin() {
   const fetchProjects = async () => {
     setError(null);
     try {
-      const res = await axios.get("http://localhost:8082/projects/all");
+      const res = await axios.get("https://portfoliobackendlinker.onrender.com/projects/all");
       setProjects(res.data || []);
     } catch (err) {
       console.error("Failed to fetch projects:", err);
@@ -58,7 +58,7 @@ export default function ProjectsAdmin() {
     if (!token()) return alert("Admin login required.");
     setLoading(true);
     try {
-      await axios.post("http://localhost:8082/projects/add", buildPayload(), {
+      await axios.post("https://portfoliobackendlinker.onrender.com/projects/add", buildPayload(), {
         headers: { Authorization: `Bearer ${token()}` },
       });
       setForm(EMPTY_FORM);
@@ -89,7 +89,7 @@ export default function ProjectsAdmin() {
     setLoading(true);
     try {
       await axios.put(
-        `http://localhost:8082/projects/edit/${editingId}`,
+        `https://portfoliobackendlinker.onrender.com/projects/edit/${editingId}`,
         buildPayload(),
         { headers: { Authorization: `Bearer ${token()}` } }
       );
@@ -106,7 +106,7 @@ export default function ProjectsAdmin() {
     if (!window.confirm("Delete this project?")) return;
     const id = extractId(project);
     try {
-      await axios.delete(`http://localhost:8082/projects/delete/${id}`, {
+      await axios.delete(`https://portfoliobackendlinker.onrender.com/projects/delete/${id}`, {
         headers: { Authorization: `Bearer ${token()}` },
       });
       await fetchProjects();

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/projects.css";
 
-const BASE_URL = "http://localhost:8082";
+const BASE_URL = "https://portfoliobackendlinker.onrender.com";
 
 export default function Projects() {
   const [projects, setProjects] = useState([]);

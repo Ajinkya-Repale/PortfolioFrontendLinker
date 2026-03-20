@@ -3,9 +3,9 @@ import axios from "axios";
 import "../styles/about.css";
 
 export default function About() {
-
   const [aboutData, setAboutData] = useState(null);
   const [loading, setLoading]     = useState(true);
+  const [visible, setVisible]     = useState(false);
 
   useEffect(() => {
     const fetchAbout = async () => {
@@ -18,6 +18,7 @@ export default function About() {
         console.error("Failed to fetch about data:", err);
       } finally {
         setLoading(false);
+        setTimeout(() => setVisible(true), 100);
       }
     };
     fetchAbout();
@@ -27,7 +28,9 @@ export default function About() {
     <section id="about" className="about-section">
       <div className="about-container">
 
-        <h2 className="about-title">About Me</h2>
+        <h2 className={`about-title about-reveal ${visible ? "active" : ""}`}>
+          About Me
+        </h2>
 
         {loading ? (
           <div className="about-skeleton-wrap">
@@ -37,12 +40,12 @@ export default function About() {
           </div>
         ) : aboutData ? (
           <>
-            <div className="about-bio">
+            <div className={`about-bio about-reveal about-reveal--delay-1 ${visible ? "active" : ""}`}>
               {aboutData.bio1 && <p className="about-intro">{aboutData.bio1}</p>}
               {aboutData.bio2 && <p className="about-intro">{aboutData.bio2}</p>}
             </div>
 
-            <div className="about-meta">
+            <div className={`about-meta about-reveal about-reveal--delay-2 ${visible ? "active" : ""}`}>
               {aboutData.location && (
                 <div className="about-meta__item">
                   <span className="about-meta__icon">📍</span>

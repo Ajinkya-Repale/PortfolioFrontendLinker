@@ -2,13 +2,38 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/hero.css";
 
+function useTypingAnimation(text) {
+  const [displayed, setDisplayed] = useState("");
+  const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    if (!text) return;
+    setDisplayed("");
+    setDone(false);
+    let i = 0;
+    const interval = setInterval(() => {
+      setDisplayed(text.slice(0, i + 1));
+      i++;
+      if (i >= text.length) {
+        clearInterval(interval);
+        setDone(true);
+      }
+    }, 80);
+    return () => clearInterval(interval);
+  }, [text]);
+
+  return { displayed, done };
+}
+
 export default function Hero() {
   const [heroData, setHeroData] = useState({
     introText: "Hello I'm",
     name: "Ajinkya Repale",
-    role: "Java Developer",
+    role: "Full Stack Java Developer",
     avatarUrl: "/Images/Profile.jpg",
   });
+
+  const { displayed, done } = useTypingAnimation(heroData.role);
 
   const scrollTo = (id) => {
     const section = document.getElementById(id);
@@ -35,7 +60,6 @@ export default function Hero() {
     fetchHero();
   }, []);
 
-  // Split name into first and last
   const nameParts = heroData.name.trim().split(" ");
   const firstName = nameParts[0] || "";
   const lastName = nameParts.slice(1).join(" ") || "";
@@ -60,7 +84,12 @@ export default function Hero() {
             <span className="hero-name__last">{lastName}</span>
           </h1>
 
-          <h2 className="hero-role">{heroData.role}</h2>
+          {/* Typing animation */}
+          <h2 className="hero-role">
+            {displayed}
+            {!done && <span className="hero-cursor">|</span>}
+            {done  && <span className="hero-cursor hero-cursor--blink">|</span>}
+          </h2>
 
           <p className="hero-summary">
             I build modern web applications using Java, Spring Boot,
@@ -85,7 +114,6 @@ export default function Hero() {
         <div className="hero-image-area">
           <div className="hero-image-wrap">
 
-            {/* Corner accents */}
             <span className="hero-corner hero-corner--tl" />
             <span className="hero-corner hero-corner--tr" />
             <span className="hero-corner hero-corner--bl" />

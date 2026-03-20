@@ -65,7 +65,6 @@ body {
 
 /* ------------------------------
 GLOBAL TRANSITIONS
-FIXED: excluded .skill-card so its own transition isn't overridden
 ------------------------------ */
 *:not(.skill-card):not(.skill-card *),
 *:not(.skill-card)::before,
@@ -75,116 +74,6 @@ FIXED: excluded .skill-card so its own transition isn't overridden
     color .45s cubic-bezier(.4,0,.2,1),
     border-color .45s cubic-bezier(.4,0,.2,1),
     box-shadow .45s cubic-bezier(.4,0,.2,1);
-}
-
-/* ------------------------------
-NAVBAR FIXED
------------------------------- */
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 8%;
-  background-color: #ffffff;
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
-  z-index: 1000;
-  transition: var(--transition);
-}
-
-.dark .navbar {
-  background-color: #02101f;
-}
-
-/* ------------------------------
-LOGO
------------------------------- */
-.logo {
-  font-size: 1.3rem;
-  font-weight: 700;
-  letter-spacing: .5px;
-  color: var(--text-primary);
-}
-
-/* ------------------------------
-NAV LINKS
------------------------------- */
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-}
-
-.nav-links a {
-  font-size: .95rem;
-  position: relative;
-  color: var(--text-primary);
-}
-
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 0%;
-  height: 2px;
-  background: var(--accent);
-  transition: width .35s ease;
-}
-
-.nav-links a:hover {
-  color: var(--text-primary);
-}
-
-.nav-links a:hover::after {
-  width: 100%;
-}
-
-/* ------------------------------
-MODE TOGGLE BUTTON
------------------------------- */
-.mode-toggle {
-  margin-left: 24px;
-  padding: 8px 20px;
-  font-size: .85rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  letter-spacing: .3px;
-  transition:
-    transform .25s ease,
-    background .25s ease,
-    color .25s ease,
-    border-color .25s ease,
-    box-shadow .25s ease;
-}
-
-.mode-toggle:hover {
-  background: var(--accent);
-  color: white;
-  border-color: var(--accent);
-  box-shadow: 0 6px 16px rgba(37,99,235,.25);
-  transform: translateY(-1px);
-}
-
-.mode-toggle:active {
-  transform: scale(.96);
-}
-
-.dark .mode-toggle {
-  background: rgba(255,255,255,0.05);
-  color: var(--text-primary);
-  border: 1px solid var(--border);
 }
 
 /* ------------------------------
@@ -293,17 +182,7 @@ SCROLLBAR
 /* ------------------------------
 RESPONSIVE
 ------------------------------ */
-@media(max-width:768px) {
-  .nav-links {
-    gap: 18px;
-  }
-
-  .navbar {
-    padding: 16px 6%;
-    flex-direction: column;
-    gap: 15px;
-  }
-
+@media (max-width: 768px) {
   section {
     padding: 100px 6%;
   }

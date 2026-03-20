@@ -13,8 +13,10 @@ import Experience from "./components/Experience";
 
 // Admin components
 import AdminLogin from "./components/AdminLogin";
+import AdminPanel from "./components/AdminPanel";
 
-import AdminPanel from "./components/AdminPanel";  // ← single source of truth
+// Backend loader
+import BackendLoader from "./components/BackendLoader";
 
 // Styles
 import "./styles/global.css";
@@ -22,9 +24,8 @@ import "./styles/AdminPanel.css";
 
 export default function App() {
   const [dark, setDark] = useState(true);
-
-  // ✅ Persist admin state across page refreshes using token in localStorage
   const [admin, setAdmin] = useState(() => !!localStorage.getItem("token"));
+  const [backendReady, setBackendReady] = useState(false); // ← new
 
   useEffect(() => {
     document.body.className = dark ? "dark" : "light";
@@ -39,6 +40,11 @@ export default function App() {
     });
     elements.forEach((el) => observer.observe(el));
   }, []);
+
+  // Show loader until backend is ready
+  if (!backendReady) {
+    return <BackendLoader onReady={() => setBackendReady(true)} />;
+  }
 
   return (
     <Router>
@@ -63,9 +69,8 @@ export default function App() {
           }
         />
 
-        {/* ADMIN LOGIN / REGISTER */}
-        <Route path="/admin/login"    element={<AdminLogin setAdmin={setAdmin} />} />
-       
+        {/* ADMIN LOGIN */}
+        <Route path="/admin/login" element={<AdminLogin setAdmin={setAdmin} />} />
 
         {/* ADMIN PANEL — protected, redirects to login if no token */}
         <Route

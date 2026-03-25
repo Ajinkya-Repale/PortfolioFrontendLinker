@@ -105,7 +105,7 @@
   }
 
   .hero-text {
-    align-items: center;   /* center on mobile */
+    align-items: center;
   }
 
   .hero-summary {
@@ -120,7 +120,7 @@
 .hero-text {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;  /* FIXED: all children left-aligned */
+  align-items: flex-start;
   gap: 0;
 }
 
@@ -133,7 +133,7 @@
   letter-spacing: 3px;
   text-transform: uppercase;
   color: #60a5fa;
-  margin-bottom: 12px;       /* FIXED: tightened */
+  margin-bottom: 12px;
   opacity: 0;
   animation: fadeUp .6s ease forwards .1s;
 }
@@ -148,7 +148,7 @@
   line-height: 1.15;
   letter-spacing: -2px;
   color: var(--text-primary);
-  margin: 0 0 12px 0;        /* FIXED: tightened */
+  margin: 0 0 12px 0;
 }
 
 .hero-name__first,
@@ -173,7 +173,7 @@
   font-size: clamp(16px, 2vw, 20px);
   font-weight: 400;
   color: #60a5fa;
-  margin: 0 0 16px 0;        /* FIXED: tightened */
+  margin: 0 0 16px 0;
   opacity: 0;
   animation: fadeUp .6s forwards .55s;
 }
@@ -186,8 +186,8 @@
   line-height: 1.8;
   color: var(--text-secondary);
   max-width: 460px;
-  margin-bottom: 32px;       /* FIXED: tightened */
-  text-align: left;          /* FIXED: explicit left align */
+  margin-bottom: 32px;
+  text-align: left;
   opacity: 0;
   animation: fadeUp .6s forwards .7s;
 }
@@ -257,7 +257,7 @@
 }
 
 /* ============================================
-   IMAGE AREA
+   IMAGE AREA — DESKTOP
 ============================================ */
 
 .hero-image-area {
@@ -273,7 +273,21 @@
   padding: 14px;
 }
 
-/* IMAGE CARD */
+/* CORNER ACCENTS — desktop only */
+.hero-corner {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-color: rgba(37, 99, 235, 0.5);
+  border-style: solid;
+}
+
+.hero-corner--tl { top: 0; left: 0; border-width: 2px 0 0 2px; }
+.hero-corner--tr { top: 0; right: 0; border-width: 2px 2px 0 0; }
+.hero-corner--bl { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
+.hero-corner--br { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+
+/* IMAGE CARD — desktop */
 
 .hero-image-card {
   width: min(290px, 85vw);
@@ -296,6 +310,70 @@
   aspect-ratio: 3/4;
   object-fit: cover;
   display: block;
+}
+
+/* ============================================
+   IMAGE — CIRCLE ON MOBILE
+============================================ */
+
+@media (max-width: 1024px) {
+
+  /* Hide corner accents — don't make sense on circle */
+  .hero-corner {
+    display: none;
+  }
+
+  .hero-image-wrap {
+    padding: 0;
+  }
+
+  /* Circle card */
+  .hero-image-card {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 3px solid rgba(37, 99, 235, 0.45);
+    box-shadow:
+      0 0 0 6px rgba(37, 99, 235, 0.08),
+      0 0 40px rgba(37, 99, 235, 0.2),
+      0 10px 40px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    transition: transform .4s ease, box-shadow .4s ease;
+  }
+
+  .hero-image-card:hover {
+    transform: translateY(-6px);
+    box-shadow:
+      0 0 0 6px rgba(37, 99, 235, 0.12),
+      0 0 50px rgba(37, 99, 235, 0.3),
+      0 16px 50px rgba(0, 0, 0, 0.45);
+  }
+
+  /* Force square crop centered for circle */
+  .hero-image-card img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center top;
+  }
+}
+
+/* Even smaller on phones */
+@media (max-width: 480px) {
+
+  .hero-image-card {
+    width: 200px;
+    height: 200px;
+  }
+
+  .hero {
+    padding: 80px 20px 40px;
+  }
+
+  .hero-summary {
+    max-width: 100%;
+  }
 }
 
 /* ============================================
@@ -328,19 +406,10 @@
   }
 }
 
-@media (max-width: 480px) {
-  .hero {
-    padding: 80px 20px 40px;
-  }
+/* ============================================
+   TYPING CURSOR
+============================================ */
 
-  .hero-summary {
-    max-width: 100%;
-  }
-}
-
-
-
-/* Typing cursor */
 .hero-cursor {
   display: inline-block;
   color: #60a5fa;

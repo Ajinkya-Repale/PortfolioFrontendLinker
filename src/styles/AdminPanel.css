@@ -314,80 +314,119 @@ body{
 
 @media (max-width:900px){
 
-.admin-sidebar{
-width:200px;
-min-width:200px;
+  .admin-sidebar{
+    width:200px;
+    min-width:200px;
+  }
+
+  .admin-main{
+    padding:26px;
+  }
 }
 
-.admin-main{
-padding:26px;
-}
-
-}
+/* ============================================
+   MOBILE — key fix: horizontal scroll nav
+============================================ */
 
 @media (max-width:768px){
 
-.admin-panel{
-flex-direction:column;
-}
+  /* Stack layout vertically */
+  .admin-panel{
+    flex-direction:column;
+  }
 
-.admin-sidebar{
-width:100%;
-height:auto;
-border-right:none;
-border-bottom:1px solid var(--divider);
-}
+  /* Sidebar becomes a top bar — fixed height, no overflow */
+  .admin-sidebar{
+    width:100%;
+    height:auto;
+    min-width:unset;
+    border-right:none;
+    border-bottom:1px solid var(--divider);
+    position:sticky;
+    top:0;
+    z-index:100;
+  }
 
-.admin-sidebar ul{
-flex-direction:row;
-flex-wrap:wrap;
-justify-content:center;
-}
+  /* Brand row stays as-is */
+  .admin-sidebar h2{
+    padding:16px 20px;
+    font-size:1rem;
+  }
 
-.sidebar-logout-btn{
-width:90%;
-margin:16px auto;
-}
+  /* Nav scrolls horizontally — NEVER wraps */
+  .admin-sidebar ul{
+    flex-direction:row;
+    flex-wrap:nowrap;          /* ← key: no wrapping */
+    overflow-x:auto;           /* ← key: scroll instead */
+    overflow-y:hidden;
+    padding:10px 12px;
+    gap:6px;
+    /* hide scrollbar but keep scrollable */
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+  }
 
-.admin-main{
-padding:20px;
-}
+  .admin-sidebar ul::-webkit-scrollbar{
+    display:none;
+  }
 
-.admin-form{
-grid-template-columns:1fr;
-}
+  /* Each nav pill stays on one line */
+  .admin-sidebar ul li{
+    flex-shrink:0;             /* ← key: don't shrink */
+    white-space:nowrap;
+    padding:7px 14px;
+    font-size:.8rem;
+  }
 
+  /* Hide the decorative dot on mobile — saves space */
+  .admin-sidebar ul li::before{
+    display:none;
+  }
+
+  /* Logout button sits below nav row */
+  .sidebar-logout-btn{
+    width:calc(100% - 24px);
+    margin:8px 12px 12px;
+    padding:10px;
+    font-size:.85rem;
+  }
+
+  .admin-main{
+    padding:20px;
+  }
+
+  .admin-form{
+    grid-template-columns:1fr;
+  }
 }
 
 @media (max-width:600px){
 
-.admin-item{
-flex-direction:column;
-align-items:flex-start;
-}
+  .admin-item{
+    flex-direction:column;
+    align-items:flex-start;
+  }
 
-.admin-item img{
-width:100%;
-height:auto;
-object-fit:contain;
-}
+  .admin-item img{
+    width:100%;
+    height:auto;
+    object-fit:contain;
+  }
 
-.admin-item-actions{
-width:100%;
-justify-content:flex-end;
-}
-
+  .admin-item-actions{
+    width:100%;
+    justify-content:flex-end;
+  }
 }
 
 @media (max-width:420px){
 
-.admin-sidebar ul li{
-font-size:.75rem;
-padding:6px 8px;
-}
+  .admin-sidebar ul li{
+    font-size:.75rem;
+    padding:6px 10px;
+  }
 
-.btn{
-width:100%;
-}
-
+  .btn{
+    width:100%;
+  }
 }

@@ -50,6 +50,7 @@
   max-width: 480px;
   padding: 20px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -125,6 +126,7 @@
 .admin-section .input-group input {
   width: 100%;
   padding: 14px;
+  padding-right: 2.8rem;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(255, 255, 255, 0.04) !important;
@@ -148,7 +150,48 @@
 
 
 /* ==========================================
-   BUTTON
+   EYE TOGGLE BUTTON
+========================================== */
+
+.admin-section .eye-toggle {
+  position: absolute;
+  right: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: auto !important;
+
+  cursor: pointer;
+  color: #64748b;
+  font-size: 1rem;
+  line-height: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: color 0.2s ease, transform 0.2s ease !important;
+}
+
+.admin-section .eye-toggle:hover {
+  color: #60a5fa !important;
+  transform: translateY(-50%) scale(1.15) !important;
+  box-shadow: none !important;
+}
+
+.admin-section .eye-toggle:active {
+  color: #2563eb !important;
+}
+
+
+/* ==========================================
+   LOGIN BUTTON
 ========================================== */
 
 .admin-section .admin-btn {
@@ -174,6 +217,54 @@
 .admin-section .admin-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+
+/* ==========================================
+   BACK TO PORTFOLIO — inside card
+   Sits below Login btn, separated by a
+   subtle divider line, no underline ever
+========================================== */
+
+.admin-section .admin-back-btn {
+  margin-top: 14px !important;
+  padding-top: 14px !important;
+  width: 100% !important;
+
+  background: transparent !important;
+  border: none !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.07) !important;
+  outline: none !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+
+  color: #64748b !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  cursor: pointer !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.4rem !important;
+
+  transition: color 0.25s ease !important;
+}
+
+.admin-section .admin-back-btn:hover {
+  color: #60a5fa !important;
+  text-decoration: none !important;
+}
+
+/* Arrow slides left on hover */
+.admin-section .admin-back-btn .back-arrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+.admin-section .admin-back-btn:hover .back-arrow {
+  transform: translateX(-4px);
 }
 
 
@@ -275,5 +366,9 @@
   .admin-cards {
     grid-template-columns: 1fr;
     gap: 16px;
+  }
+
+  .admin-section .admin-back-btn {
+    font-size: 0.82rem !important;
   }
 }

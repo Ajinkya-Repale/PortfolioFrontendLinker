@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "../styles/admin.css";
 
 const BASE_URL = "https://portfoliobackendlinker.onrender.com";
 
 export default function AdminLogin({ setAdmin }) {
-  const [adminName, setAdminName] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [adminName,    setAdminName]    = useState("");
+  const [password,     setPassword]     = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [error,        setError]        = useState("");
+  const [loading,      setLoading]      = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -47,21 +49,10 @@ export default function AdminLogin({ setAdmin }) {
   };
 
   return (
-    <div
-      className="admin-section"
-      style={{
-        width: "100vw",
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        position: "fixed",
-        top: 0,
-        left: 0,
-      }}
-    >
+    <div className="admin-section">
       <div className="admin-container">
         <div className="admin-card">
+
           <h2>Admin Login</h2>
 
           {error && (
@@ -70,33 +61,51 @@ export default function AdminLogin({ setAdmin }) {
             </div>
           )}
 
-          <div>
-            <div className="input-group">
-              <input
-                type="text"
-                placeholder="Admin Name"
-                value={adminName}
-                onChange={(e) => setAdminName(e.target.value)}
-              />
-            </div>
+          {/* Admin Name */}
+          <div className="input-group">
+            <input
+              type="text"
+              placeholder="Admin Name"
+              value={adminName}
+              onChange={(e) => setAdminName(e.target.value)}
+            />
+          </div>
 
-            <div className="input-group">
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-
+          {/* Password with Eye Toggle */}
+          <div className="input-group">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
             <button
-              className="admin-btn"
-              onClick={handleLogin}
-              disabled={loading}
+              type="button"
+              className="eye-toggle"
+              onClick={() => setShowPassword(!showPassword)}
+              aria-label={showPassword ? "Hide password" : "Show password"}
             >
-              {loading ? "Logging in…" : "Login"}
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
             </button>
           </div>
+
+          {/* Login Button */}
+          <button
+            className="admin-btn"
+            onClick={handleLogin}
+            disabled={loading}
+          >
+            {loading ? "Logging in…" : "Login"}
+          </button>
+
+          {/* Back to Portfolio — inside card */}
+          <button
+            className="admin-back-btn"
+            onClick={() => navigate("/")}
+          >
+            <span className="back-arrow">←</span>
+            Back to Portfolio
+          </button>
 
         </div>
       </div>

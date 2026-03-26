@@ -16,7 +16,7 @@
   justify-content: center;
   padding: clamp(80px, 10vw, 120px) 8% clamp(40px, 6vw, 80px);
   overflow: hidden;
-  background: var(--bg-primary);
+  background: transparent; /* ← FIXED: was var(--bg-primary) */
 }
 
 /* ============================================
@@ -318,7 +318,6 @@
 
 @media (max-width: 1024px) {
 
-  /* Hide corner accents — don't make sense on circle */
   .hero-corner {
     display: none;
   }
@@ -327,7 +326,6 @@
     padding: 0;
   }
 
-  /* Circle card */
   .hero-image-card {
     width: 250px;
     height: 250px;
@@ -349,7 +347,6 @@
       0 16px 50px rgba(0, 0, 0, 0.45);
   }
 
-  /* Force square crop centered for circle */
   .hero-image-card img {
     width: 100%;
     height: 100%;
@@ -359,7 +356,6 @@
   }
 }
 
-/* Even smaller on phones */
 @media (max-width: 480px) {
 
   .hero-image-card {

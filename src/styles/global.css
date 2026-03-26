@@ -58,17 +58,39 @@ body {
   background: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
   transition:
     background .7s cubic-bezier(.4,0,.2,1),
     color .7s cubic-bezier(.4,0,.2,1);
 }
 
 /* ------------------------------
+MATRIX RAIN CANVAS
+------------------------------ */
+.matrix-canvas {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  opacity: 0.45 !important;
+  transition: none !important;
+  background: transparent !important;
+}
+
+.light .matrix-canvas {
+  opacity: 0.08 !important;
+}
+
+/* ------------------------------
 GLOBAL TRANSITIONS
 ------------------------------ */
-*:not(.skill-card):not(.skill-card *):not(.cursor-glow),
-*:not(.skill-card)::before,
-*:not(.skill-card)::after {
+*:not(.skill-card):not(.skill-card *):not(.cursor-glow):not(.matrix-canvas),
+*:not(.skill-card):not(.matrix-canvas)::before,
+*:not(.skill-card):not(.matrix-canvas)::after {
   transition:
     background-color .45s cubic-bezier(.4,0,.2,1),
     color .45s cubic-bezier(.4,0,.2,1),
@@ -92,7 +114,6 @@ CURSOR GLOW
   will-change: left, top;
   transition: opacity 0.4s ease !important;
 
-  /* Light mode */
   background: radial-gradient(
     circle,
     rgba(37, 99, 235, 0.6) 0%,
@@ -102,7 +123,6 @@ CURSOR GLOW
   box-shadow: 0 0 10px 4px rgba(37, 99, 235, 0.25);
 }
 
-/* Dark mode */
 .dark .cursor-glow {
   background: radial-gradient(
     circle,
@@ -114,7 +134,6 @@ CURSOR GLOW
   box-shadow: 0 0 12px 5px rgba(96, 165, 250, 0.3);
 }
 
-/* Hide on mobile */
 @media (max-width: 768px) {
   .cursor-glow {
     display: none;
@@ -177,6 +196,8 @@ SECTION SPACING
 ------------------------------ */
 section {
   padding: 140px 8%;
+  position: relative;
+  z-index: 1;
 }
 
 /* ------------------------------
@@ -248,5 +269,9 @@ RESPONSIVE
 @media (max-width: 768px) {
   section {
     padding: 100px 6%;
+  }
+
+  .matrix-canvas {
+    opacity: 0.25 !important;
   }
 }

@@ -18,6 +18,9 @@ import AdminPanel from "./components/AdminPanel";
 // Backend loader
 import BackendLoader from "./components/BackendLoader";
 
+// Matrix Rain
+import MatrixRain from "./components/MatrixRain";
+
 // Styles
 import "./styles/global.css";
 import "./styles/AdminPanel.css";
@@ -112,6 +115,7 @@ export default function App() {
   return (
     <>
       <div ref={cursorRef} className="cursor-glow" />
+      <MatrixRain />
 
       <Router>
         <Routes>

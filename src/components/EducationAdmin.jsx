@@ -10,7 +10,8 @@ export default function EducationAdmin() {
     collegeTitle: "",
     startYear: "",
     endYear: "",
-    percentage: ""
+    percentage: "",
+    degree: ""
   });
 
   const [editingId, setEditingId] = useState(null);
@@ -40,7 +41,8 @@ export default function EducationAdmin() {
       collegeTitle: "",
       startYear: "",
       endYear: "",
-      percentage: ""
+      percentage: "",
+      degree: ""
     });
   };
 
@@ -73,10 +75,11 @@ export default function EducationAdmin() {
     setEditingId(edu.id);
 
     setForm({
-      collegeTitle: edu.collegeTitle,
-      startYear: edu.startYear,
-      endYear: edu.endYear,
-      percentage: edu.percentage
+      collegeTitle: edu.collegeTitle || "",
+      startYear: edu.startYear || "",
+      endYear: edu.endYear || "",
+      percentage: edu.percentage || "",
+      degree: edu.degree || ""
     });
   };
 
@@ -139,6 +142,16 @@ export default function EducationAdmin() {
               name="collegeTitle"
               placeholder="Enter college name"
               value={form.collegeTitle}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="education-field">
+            <label>Degree</label>
+            <input
+              name="degree"
+              placeholder="e.g. B.Tech Computer Science"
+              value={form.degree}
               onChange={handleChange}
             />
           </div>
@@ -215,6 +228,10 @@ export default function EducationAdmin() {
 
                 <div className="education-item-degree">
                   {edu.collegeTitle}
+                </div>
+
+                <div className="education-item-college">
+                  {edu.degree}
                 </div>
 
                 <div className="education-item-college">

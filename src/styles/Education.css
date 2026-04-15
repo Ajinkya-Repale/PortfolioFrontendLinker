@@ -168,14 +168,14 @@
 }
 
 /* College */
+/* College (SECONDARY) */
 .education-college {
-  font-family: 'Syne', sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  color: #f1f5f9;
-  letter-spacing: -0.3px;
-  margin: 0;
-  line-height: 1.3;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #94a3b8;
+  margin: 0 0 12px 0;
+  line-height: 1.5;
 }
 
 /* Years badge */
@@ -199,14 +199,15 @@
   opacity: 0.6;
 }
 
-/* Degree */
+/* Degree (PRIMARY) */
 .education-degree {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  color: #94a3b8;
-  margin: 0 0 14px 0;
-  line-height: 1.5;
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin: 0 0 6px 0;
+  line-height: 1.3;
+  letter-spacing: -0.3px;
 }
 
 /* ---- GPA / Percentage Pill ---- */

@@ -57,6 +57,10 @@
   flex-direction: column;
   font-family: var(--font-ui);
   color: var(--text-primary);
+
+     /* ADD THIS */
+  position: relative;
+           /* ADD THIS */
 }
 
 /* ============================================

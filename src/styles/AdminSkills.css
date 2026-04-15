@@ -61,6 +61,8 @@
   flex-direction: column;
   font-family: var(--font-ui);
   color: var(--text-primary);
+
+  position: relative;
 }
 
 .skills-admin-title {

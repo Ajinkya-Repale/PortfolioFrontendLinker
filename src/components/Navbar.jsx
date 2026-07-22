@@ -20,7 +20,9 @@ export default function Navbar({ dark, setDark }) {
   return (
     <nav className={`navbar ${dark ? "dark" : "light"}`}>
 
-      <div className="logo">PortDev</div>
+      <div className="logo">
+        <img src="/logo.png" alt="AR logo" className="logo-img" />
+      </div>
 
       {/* Hamburger */}
       <div

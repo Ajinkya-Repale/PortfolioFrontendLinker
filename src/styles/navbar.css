@@ -29,17 +29,21 @@ LOGO
 ------------------------------ */
 
 .logo {
-  font-size: 1.3rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  background: linear-gradient(90deg, var(--accent-light), var(--accent));
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
   cursor: pointer;
   z-index: 1002;
   position: relative;
   flex-shrink: 0;
+}
+
+.logo-img {
+  height: 32px;
+  max-height: 32px;
+  width: auto;
+  max-width: 120px;
+  object-fit: contain;
+  display: block;
 }
 
 /* ------------------------------

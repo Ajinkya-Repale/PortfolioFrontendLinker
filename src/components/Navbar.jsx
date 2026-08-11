@@ -43,12 +43,7 @@ export default function Navbar({ dark, setDark }) {
         <button onClick={() => scrollToSection("experience")}>Experience</button>
         <button onClick={() => scrollToSection("contact")}>Contact</button>
 
-        <button
-          className="mode-toggle"
-          onClick={() => setDark(!dark)}
-        >
-          {dark ? "Light" : "Dark"}
-        </button>
+        
 
       </div>
 

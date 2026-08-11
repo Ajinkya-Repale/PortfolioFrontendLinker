@@ -2,13 +2,20 @@
 
 .about-section {
   padding: 160px 8%;
+  display: flex;
+  justify-content: center;
 }
 
 /* ── CONTAINER ─────────────────────────────── */
 
 .about-container {
+  width: 100%;
   max-width: 720px;
   margin: 0 auto;
+  background: rgba(10, 14, 26, 0.6);
+  border: 1px solid rgba(37, 99, 235, 0.15);
+  border-radius: 20px;
+  padding: 40px 48px;
 }
 
 /* ── SCROLL REVEAL ─────────────────────────── */
@@ -24,19 +31,15 @@
   transform: translateY(0);
 }
 
-.about-reveal--delay-1 {
-  transition-delay: 0.15s;
-}
-
-.about-reveal--delay-2 {
-  transition-delay: 0.3s;
-}
+.about-reveal--delay-1 { transition-delay: 0.15s; }
+.about-reveal--delay-2 { transition-delay: 0.3s; }
 
 /* ── TITLE ─────────────────────────────────── */
 
 .about-title {
   font-size: 42px;
-  margin-bottom: 28px;
+  margin-bottom: 16px;
+  text-align: center;
   background: linear-gradient(90deg, #60a5fa, #2563eb);
   background-clip: text;
   -webkit-background-clip: text;
@@ -44,49 +47,110 @@
   color: transparent;
 }
 
-/* ── BIO ───────────────────────────────────── */
+/* ── HEADER (avatar + bio) ─────────────────── */
+
+.about-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 36px;
+  text-align: left;
+}
+
+.about-avatar {
+  width: 88px;
+  height: 88px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  font-weight: 600;
+  color: #93c5fd;
+  background: rgba(37, 99, 235, 0.12);
+  border: 1px solid rgba(37, 99, 235, 0.35);
+  box-shadow: 0 0 24px rgba(37, 99, 235, 0.2);
+}
 
 .about-bio {
-  margin-bottom: 32px;
+  flex: 1;
+  max-width: 480px;
+  text-align: left;
 }
 
 .about-intro {
   line-height: 1.8;
   opacity: .8;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   font-size: 16px;
+  text-align: left;
 }
 
-/* ── META PILLS ────────────────────────────── */
+/* ── META CARD GRID ────────────────────────── */
 
 .about-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  align-items: stretch;
 }
 
-.about-meta__item {
+.about-meta__card {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
-  font-size: 14px;
-  opacity: .85;
+  text-align: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 170px;
   background: rgba(37, 99, 235, 0.06);
   border: 1px solid rgba(37, 99, 235, 0.18);
-  border-radius: 10px;
-  padding: 11px 16px;
+  border-radius: 12px;
+  padding: 16px;
   transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
 }
 
-.about-meta__item:hover {
+.about-meta__card:hover {
   border-color: rgba(37, 99, 235, 0.5);
   box-shadow: 0 0 20px rgba(37, 99, 235, 0.15);
-  transform: translateX(6px);
+  transform: translateY(-4px);
+}
+
+.about-meta__icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(37, 99, 235, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
 }
 
 .about-meta__icon {
-  font-size: 16px;
-  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: #60a5fa;
+  stroke-width: 1.75;
+}
+
+.about-meta__label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  opacity: .55;
+}
+
+.about-meta__value {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.about-meta__sub {
+  font-size: 12px;
+  opacity: .6;
+  margin-top: 2px;
 }
 
 /* ── SKELETON ──────────────────────────────── */
@@ -122,16 +186,33 @@
     padding: 100px 6%;
   }
 
+  .about-container {
+    padding: 28px 20px;
+  }
+
   .about-title {
     font-size: 32px;
+  }
+
+  .about-header {
+    flex-direction: column;
     text-align: center;
   }
 
+  .about-bio,
   .about-intro {
     text-align: center;
   }
 
-  .about-meta__item:hover {
-    transform: translateX(0);
+  .about-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .about-meta__card {
+    min-height: 0;
+  }
+
+  .about-meta__card:hover {
+    transform: none;
   }
 }

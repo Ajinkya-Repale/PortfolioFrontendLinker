@@ -139,6 +139,17 @@ PortfolioBackendLinker/
 
 ---
 
-## License
+## Author
 
-This project is for personal portfolio use. Feel free to fork and adapt for your own portfolio.
+**Ajinkya Repale**
+Java Developer
+
+
+## Contact
+
+Feel free to reach out for collaborations, opportunities, or just to say hi.
+
+-  Email: ajinkyarepale45@gmail.com
+-  GitHub: [github.com/yourusername](https://github.com/yourusername)
+-  Portfolio: [portfolio-frontend-linker.vercel.app](https://portfolio-frontend-linker.vercel.app)
+-  LinkedIn: [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)

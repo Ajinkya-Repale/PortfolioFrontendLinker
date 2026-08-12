@@ -150,6 +150,6 @@ Java Developer
 Feel free to reach out for collaborations, opportunities, or just to say hi.
 
 -  Email: ajinkyarepale45@gmail.com
--  GitHub: [github.com/yourusername](https://github.com/yourusername)
+-  GitHub: [github.com/yourusername]([https://github.com/yourusername](https://github.com/Ajinkya-Repale))
 -  Portfolio: [portfolio-frontend-linker.vercel.app](https://portfolio-frontend-linker.vercel.app)
 -  LinkedIn: [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)

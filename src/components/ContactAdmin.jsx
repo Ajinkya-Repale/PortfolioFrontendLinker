@@ -16,6 +16,19 @@ const EMPTY_FORM = {
   emailUrl:    "",
 };
 
+const getInitials = (name) =>
+  name
+    ? name.trim().split(/\s+/).map(w => w[0]).slice(0, 2).join("").toUpperCase()
+    : "?";
+
+const formatDate = (dateStr) => {
+  if (!dateStr) return "";
+  const d = new Date(dateStr);
+  return d.toLocaleDateString("en-US", { month: "short", day: "numeric" }) +
+    ", " +
+    d.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+};
+
 export default function ContactAdmin() {
   const [contacts,   setContacts]   = useState([]);
   const [form,       setForm]       = useState(EMPTY_FORM);
@@ -23,18 +36,23 @@ export default function ContactAdmin() {
   const [loading,    setLoading]    = useState(false);
   const [error,      setError]      = useState(null);
 
-  useEffect(() => { fetchContacts(); }, []);
+  const [messages,        setMessages]        = useState([]);
+  const [messagesLoading, setMessagesLoading]  = useState(false);
+  const [messagesError,   setMessagesError]    = useState(null);
+
+  useEffect(() => {
+    fetchContacts();
+    fetchMessages();
+  }, []);
 
   const fetchContacts = async () => {
     setError(null);
     try {
-      const res = await axios.get("https://portfoliobackendlinker.onrender.com/contact/view");
+     const res = await axios.get("https://portfoliobackendlinker.onrender.com/contact/view");
 
-      // ── DEBUG: remove after confirming data shows ──
       console.log("Raw response:", res.data);
       console.log("Is array:", Array.isArray(res.data));
 
-      // Handle both array and single object response from Spring
       let data = res.data;
       if (!Array.isArray(data)) {
         data = data ? [data] : [];
@@ -50,15 +68,44 @@ export default function ContactAdmin() {
     }
   };
 
+  const fetchMessages = async () => {
+    setMessagesError(null);
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setMessagesError("Admin login required to view submissions.");
+      return;
+    }
+    setMessagesLoading(true);
+    try {
+     const res = await axios.get("https://portfoliobackendlinker.onrender.com/contact/messages", {
+        headers: { Authorization: "Bearer " + token },
+      });
+      const data = Array.isArray(res.data) ? res.data : [];
+      data.sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt));
+      setMessages(data);
+    } catch (err) {
+      console.error("Fetch messages failed:", err);
+      setMessagesError(
+        err.response?.status === 403
+          ? "403 Forbidden — check your JWT token."
+          : "Could not load submissions."
+      );
+      setMessages([]);
+    } finally {
+      setMessagesLoading(false);
+    }
+  };
+
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleAdd = async () => {
-    if (!localStorage.getItem("token")) return alert("Admin login required.");
+    const token = localStorage.getItem("token");
+    if (!token) return alert("Admin login required.");
     setLoading(true);
     try {
       await axios.post("https://portfoliobackendlinker.onrender.com/contact/add", form, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        headers: { Authorization: "Bearer " + token },
       });
       setForm(EMPTY_FORM);
       await fetchContacts();
@@ -85,13 +132,14 @@ export default function ContactAdmin() {
 
   const handleUpdate = async () => {
     if (!editingId) return alert("No editing ID found.");
-    if (!localStorage.getItem("token")) return alert("Admin login required.");
+    const token = localStorage.getItem("token");
+    if (!token) return alert("Admin login required.");
     setLoading(true);
     try {
       await axios.put(
-        `https://portfoliobackendlinker.onrender.com/contact/edit/${editingId}`,
+        "https://portfoliobackendlinker.onrender.com/contact/edit/" + editingId,
         form,
-        { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
+        { headers: { Authorization: "Bearer " + token } }
       );
       setEditingId(null);
       setForm(EMPTY_FORM);
@@ -110,23 +158,20 @@ export default function ContactAdmin() {
   return (
     <div className="ca-page">
 
-      {/* ── Title ── */}
       <h2 className="ca-title">Contact Section</h2>
 
-      {/* ── Error Banner ── */}
       {error && (
         <div className="ca-error-banner">
-          ⚠ {error}
+          Warning: {error}
           <button className="btn btn-ghost btn-sm" onClick={fetchContacts}>Retry</button>
         </div>
       )}
 
-      {/* ── Form Card ── */}
-      <div className={`ca-form-card${editingId ? " ca-form-card--editing" : ""}`}>
+      <div className={"ca-form-card" + (editingId ? " ca-form-card--editing" : "")}>
 
         <div className="ca-form-mode">
-          <span className={`ca-form-mode-dot${editingId ? " ca-form-mode-dot--warn" : ""}`} />
-          {editingId ? `Edit Mode — ID: ${editingId}` : "Add a new contact entry"}
+          <span className={"ca-form-mode-dot" + (editingId ? " ca-form-mode-dot--warn" : "")} />
+          {editingId ? "Edit Mode — ID: " + editingId : "Add a new contact entry"}
         </div>
 
         <div className="ca-form-grid">
@@ -190,10 +235,10 @@ export default function ContactAdmin() {
           {editingId ? (
             <>
               <button className="btn btn-save" onClick={handleUpdate} disabled={loading}>
-                {loading ? "Saving…" : "✓ Save Changes"}
+                {loading ? "Saving…" : "Save Changes"}
               </button>
               <button className="btn btn-ghost" onClick={handleCancel}>
-                ✕ Cancel
+                Cancel
               </button>
             </>
           ) : (
@@ -205,13 +250,11 @@ export default function ContactAdmin() {
 
       </div>
 
-      {/* ── List Header ── */}
       <div className="ca-list-header">
         <span>Saved Entries</span>
         <span className="badge badge-count">{contacts.length}</span>
       </div>
 
-      {/* ── List ── */}
       <div className="ca-list">
         {contacts.length === 0 ? (
           <div className="ca-empty">
@@ -225,7 +268,7 @@ export default function ContactAdmin() {
             return (
               <div
                 key={id || index}
-                className={`ca-item${isEditing ? " ca-item--editing" : ""}`}
+                className={"ca-item" + (isEditing ? " ca-item--editing" : "")}
               >
 
                 <div className="ca-item-info">
@@ -253,7 +296,7 @@ export default function ContactAdmin() {
                         rel="noopener noreferrer"
                         className="ca-link ca-link--github"
                       >
-                        GitHub ↗
+                        GitHub
                       </a>
                     )}
                     {contact.linkedInUrl && (
@@ -263,12 +306,12 @@ export default function ContactAdmin() {
                         rel="noopener noreferrer"
                         className="ca-link ca-link--linkedin"
                       >
-                        LinkedIn ↗
+                        LinkedIn
                       </a>
                     )}
                     {contact.emailUrl && (
                       <a href={contact.emailUrl} className="ca-link ca-link--email">
-                        Email Link ↗
+                        Email Link
                       </a>
                     )}
                   </div>
@@ -283,10 +326,10 @@ export default function ContactAdmin() {
                         onClick={handleUpdate}
                         disabled={loading}
                       >
-                        {loading ? "…" : "✓ Save"}
+                        {loading ? "…" : "Save"}
                       </button>
                       <button className="btn btn-ghost btn-sm" onClick={handleCancel}>
-                        ✕ Cancel
+                        Cancel
                       </button>
                     </>
                   ) : (
@@ -294,11 +337,123 @@ export default function ContactAdmin() {
                       className="btn btn-ghost btn-sm"
                       onClick={() => handleEdit(contact)}
                     >
-                      ✏ Edit
+                      Edit
                     </button>
                   )}
                 </div>
 
+              </div>
+            );
+          })
+        )}
+      </div>
+
+      <div className="ca-list-header" style={{ marginTop: "40px" }}>
+        <span>Contact Form Submissions</span>
+        <span className="badge badge-count">{messages.length}</span>
+      </div>
+
+      {messagesError && (
+        <div className="ca-error-banner">
+          Warning: {messagesError}
+          <button className="btn btn-ghost btn-sm" onClick={fetchMessages}>Retry</button>
+        </div>
+      )}
+
+      <div className="ca-list">
+        {messagesLoading ? (
+          <div className="ca-empty">Loading submissions…</div>
+        ) : messages.length === 0 ? (
+          <div className="ca-empty">
+            <div className="ca-empty-icon">📭</div>
+            {messagesError ? "Failed to load submissions." : "No messages submitted yet."}
+          </div>
+        ) : (
+          messages.map((msg, index) => {
+            const id = extractId(msg) || index;
+            return (
+              <div
+                key={id}
+                style={{
+                  background: "rgba(37,99,235,0.05)",
+                  border: "1px solid rgba(37,99,235,0.18)",
+                  borderLeft: "3px solid #2563eb",
+                  borderRadius: "12px",
+                  padding: "20px",
+                  marginBottom: "14px",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "flex-start",
+                    marginBottom: "14px",
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                    <div
+                      style={{
+                        width: "40px",
+                        height: "40px",
+                        borderRadius: "50%",
+                        background: "linear-gradient(135deg,#2563eb,#60a5fa)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "#fff",
+                        fontWeight: 600,
+                        fontSize: "14px",
+                        flexShrink: 0,
+                      }}
+                    >
+                      {getInitials(msg.name)}
+                    </div>
+                    <div>
+                      <p style={{ margin: 0, fontSize: "15px", fontWeight: 600, color: "#fff" }}>
+                        {msg.name}
+                      </p>
+                      <p style={{ margin: "2px 0 0", fontSize: "13px", color: "#60a5fa" }}>
+                        {msg.email}
+                      </p>
+                    </div>
+                  </div>
+                  {msg.submittedAt && (
+                    <span style={{ fontSize: "11px", color: "#6b7280", whiteSpace: "nowrap" }}>
+                      {formatDate(msg.submittedAt)}
+                    </span>
+                  )}
+                </div>
+
+                <div
+                  style={{
+                    background: "rgba(255,255,255,0.03)",
+                    borderRadius: "8px",
+                    padding: "12px 14px",
+                    marginBottom: "12px",
+                  }}
+                >
+                  <p style={{ margin: 0, fontSize: "14px", color: "#d1d5db", lineHeight: 1.6 }}>
+                    {msg.message}
+                  </p>
+                </div>
+
+                <div style={{ display: "flex", gap: "8px" }}>
+                  <a
+                    href={"mailto:" + msg.email}
+                    style={{
+                      fontSize: "12px",
+                      padding: "6px 12px",
+                      borderRadius: "6px",
+                      background: "rgba(37,99,235,0.15)",
+                      color: "#93c5fd",
+                      textDecoration: "none",
+                      fontWeight: 500,
+                    }}
+                  >
+                    Reply by email
+                  </a>
+                </div>
               </div>
             );
           })

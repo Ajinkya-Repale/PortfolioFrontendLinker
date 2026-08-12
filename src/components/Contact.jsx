@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 import "../styles/contact.css";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
@@ -46,18 +47,31 @@ export default function Contact() {
     e.preventDefault();
     setStatus("sending");
     try {
-      // Sends email via EmailJS or your own backend endpoint
-      // Using mailto as fallback — opens native email client
-      const subject = encodeURIComponent(`Portfolio Contact from ${form.name}`);
-      const body    = encodeURIComponent(
-        `Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`
-      );
-      window.open(`mailto:${data.email}?subject=${subject}&body=${body}`, "_self");
+     await axios.post("https://portfoliobackendlinker.onrender.com/contact/submit", form);
+
       setStatus("sent");
       setForm({ name: "", email: "", message: "" });
+
+      Swal.fire({
+        icon: "success",
+        title: "Message sent!",
+        text: "Thanks for reaching out — we will contact you soon.",
+        background: "#0a0e1a",
+        color: "#fff",
+        confirmButtonColor: "#2563eb",
+      });
     } catch (err) {
       console.error("Send failed:", err);
       setStatus("error");
+
+      Swal.fire({
+        icon: "error",
+        title: "Something went wrong",
+        text: "Couldn't send your message. Please try again.",
+        background: "#0a0e1a",
+        color: "#fff",
+        confirmButtonColor: "#2563eb",
+      });
     }
   };
 
@@ -65,7 +79,7 @@ export default function Contact() {
     <section id="contact" className="contact-section">
       <div className="contact-container">
 
-        {/* ── LEFT ── */}
+        {/* LEFT */}
         <div className="contact-info">
 
           <h2>Let's Work Together</h2>
@@ -88,36 +102,20 @@ export default function Contact() {
           </div>
 
           <div className="contact-socials">
-            <a
-              href={data.linkedInUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              title="LinkedIn"
-            >
+            <a href={data.linkedInUrl} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
               <FaLinkedin />
             </a>
-            <a
-              href={data.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              title="GitHub"
-            >
+            <a href={data.githubUrl} target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
               <FaGithub />
             </a>
-            <a
-              href={data.emailUrl}
-              aria-label="Email"
-              title="Send Email"
-            >
+            <a href={data.emailUrl} aria-label="Email" title="Send Email">
               <FaEnvelope />
             </a>
           </div>
 
         </div>
 
-        {/* ── RIGHT FORM ── */}
+        {/* RIGHT FORM */}
         <div className="contact-form-wrapper">
 
           <form className="contact-form" onSubmit={handleSubmit}>
@@ -165,17 +163,6 @@ export default function Contact() {
             >
               {status === "sending" ? "Sending…" : "Send Message"}
             </button>
-
-            {status === "sent" && (
-              <p className="contact-status contact-status--success">
-                ✓ Message sent successfully!
-              </p>
-            )}
-            {status === "error" && (
-              <p className="contact-status contact-status--error">
-                ✗ Failed to send. Please try again.
-              </p>
-            )}
 
           </form>
 

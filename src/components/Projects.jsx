@@ -41,10 +41,9 @@ export default function Projects() {
   return (
     <section id="projects" className="projects-section reveal">
       <div className="projects-header">
-        <h2>Selected Work</h2>
+        <h2>Projects</h2>
         <p>
-          A selection of projects that showcase my ability to
-          build modern, scalable and user-focused applications.
+          Applications I've designed and built end-to-end — from idea to deployed product.
         </p>
       </div>
 

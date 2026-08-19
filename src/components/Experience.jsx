@@ -66,7 +66,6 @@ export default function Experience() {
 
       {/* ── Header ── */}
       <div className="exp-header">
-        <span className="exp-eyebrow">Career Path</span>
         <h2 className="exp-title">Experience</h2>
       </div>
 

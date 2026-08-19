@@ -178,6 +178,7 @@
   border-radius: 20px;
   padding: 40px 44px;
   overflow: hidden;
+  text-align: left;
   opacity: 0;
   animation: panelIn 0.4s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
 }
@@ -245,7 +246,56 @@
   font-size: 15px;
   line-height: 1.85;
   color: var(--text-secondary, #94a3b8);
-  margin: 0;
+  margin: 0 0 24px 0;
+}
+
+/* ── BULLET LIST ───────────────────────────── */
+
+.exp-panel__list {
+  list-style: none;
+  margin: 0 0 24px 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.exp-panel__list li {
+  position: relative;
+  padding-left: 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--text-secondary, #94a3b8);
+}
+
+.exp-panel__list li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #60a5fa;
+  font-weight: 600;
+}
+
+/* ── TECH STACK TAGS ───────────────────────── */
+
+.exp-panel__stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.exp-panel__stack-tag {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 8px;
+  background: rgba(37, 99, 235, 0.12);
+  border: 1px solid rgba(37, 99, 235, 0.22);
+  color: #60a5fa;
 }
 
 /* corner accents */

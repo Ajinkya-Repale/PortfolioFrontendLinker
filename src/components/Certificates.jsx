@@ -35,12 +35,24 @@ export default function Certificates() {
             certificates.map((cert) => (
               <div key={cert.id} className="certificate-card">
 
-                <div className="certificate-logo-wrap">
+                <div className="certificate-image-wrap">
                   <img
                     src={cert.credentialUrl || "/Images/cert-placeholder.png"}
                     alt={cert.title}
+                    loading="lazy"
                     onError={(e) => { e.target.src = "/Images/cert-placeholder.png"; }}
                   />
+                  {cert.credentialUrl && (
+                    <a
+                      href={cert.credentialUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="certificate-view-btn"
+                      aria-label={`View full certificate: ${cert.title}`}
+                    >
+                      View full
+                    </a>
+                  )}
                 </div>
 
                 <div className="certificate-card-body">

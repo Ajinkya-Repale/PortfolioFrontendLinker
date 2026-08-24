@@ -46,7 +46,7 @@
 
 .certificates-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
 }
 
@@ -54,10 +54,9 @@
   background: var(--cert-card);
   border: 1px solid var(--cert-border);
   border-radius: 14px;
-  padding: 24px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 16px;
   transition: border-color .25s ease, transform .25s ease;
 }
 
@@ -66,34 +65,66 @@
   transform: translateY(-3px);
 }
 
-.certificate-logo-wrap {
-  width: 56px;
-  height: 56px;
-  border-radius: 10px;
-  overflow: hidden;
+.certificate-image-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
   background: var(--cert-blue-dim);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden;
 }
 
-.certificate-logo-wrap img {
+.certificate-image-wrap img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  display: block;
+}
+
+.certificate-view-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--cert-ink);
+  background: rgba(10, 14, 23, 0.75);
+  border: 1px solid var(--cert-border);
+  padding: 6px 12px;
+  border-radius: 20px;
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity .2s ease, transform .2s ease, border-color .2s ease;
+}
+
+.certificate-card:hover .certificate-view-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.certificate-view-btn:hover {
+  border-color: var(--cert-blue);
+  color: var(--cert-blue);
+}
+
+.certificate-card-body {
+  padding: 20px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .certificate-title {
   font-size: 18px;
   font-weight: 600;
   color: var(--cert-ink);
-  margin-bottom: 4px;
+  margin: 0;
 }
 
 .certificate-issuer {
   font-size: 14px;
   color: var(--cert-muted);
-  margin-bottom: 10px;
+  margin: 0;
 }
 
 .certificate-date-badge {
@@ -105,6 +136,7 @@
   border-radius: 20px;
   display: inline-block;
   width: fit-content;
+  margin-top: 4px;
 }
 
 .certificates-empty {

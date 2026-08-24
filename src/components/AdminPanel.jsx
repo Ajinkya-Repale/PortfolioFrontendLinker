@@ -6,6 +6,7 @@ import AboutAdmin from "./AboutAdmin";
 import ContactAdmin from "./ContactAdmin";
 import ExperienceAdmin from "./ExperienceAdmin";
 import EducationAdmin from "./EducationAdmin";
+import CertificatesAdmin from "./CertificatesAdmin";
 import "../styles/AdminPanel.css";
 
 export default function AdminPanel({ setAdmin }) {
@@ -28,6 +29,7 @@ export default function AdminPanel({ setAdmin }) {
             { key: "projects", label: "Projects" },
             { key: "experience", label: "Experience" },
             {key: "education", label:"Education"},
+            { key: "certificates", label: "Certificates" },
             { key: "about",    label: "About" },
             { key: "contact",  label: "Contact" },
           ].map(({ key, label }) => (
@@ -55,6 +57,7 @@ export default function AdminPanel({ setAdmin }) {
         {activeSection === "contact"  && <ContactAdmin />}
         {activeSection === "experience" && <ExperienceAdmin />}
         {activeSection === "education" && <EducationAdmin />}
+        {activeSection === "certificates" && <CertificatesAdmin />}
       </main>
     </div>
   );

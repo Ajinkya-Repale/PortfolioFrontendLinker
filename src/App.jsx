@@ -9,6 +9,7 @@ import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Education from "./components/Education";
+import Certificates from "./components/Certificates";
 import Experience from "./components/Experience";
 
 // Admin components
@@ -129,6 +130,7 @@ export default function App() {
                 <Skills />
                 <Projects />
                 <Education />
+                <Certificates />
                 <Experience />
                 <Contact />
                 <footer className="footer">

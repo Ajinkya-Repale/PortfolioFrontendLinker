@@ -160,19 +160,6 @@
   color: #94a3b8;
 }
 
-.input-group input:focus + label,
-.input-group input:not(:placeholder-shown) + label,
-.input-group textarea:focus + label,
-.input-group textarea:not(:placeholder-shown) + label {
-  top: -9px;
-  left: 10px;
-  font-size: 11px;
-  opacity: 1;
-  color: #60a5fa;
-  background: #020617;
-  padding: 0 6px;
-  border-radius: 3px;
-}
 
 /* ── BUTTON ────────────────────────────────── */
 

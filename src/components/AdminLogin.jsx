@@ -61,42 +61,46 @@ export default function AdminLogin({ setAdmin }) {
             </div>
           )}
 
-          {/* Admin Name */}
-          <div className="input-group">
-            <input
-              type="text"
-              placeholder="Admin Name"
-              value={adminName}
-              onChange={(e) => setAdminName(e.target.value)}
-            />
-          </div>
+          <form onSubmit={handleLogin}>
 
-          {/* Password with Eye Toggle */}
-          <div className="input-group">
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            {/* Admin Name */}
+            <div className="input-group">
+              <input
+                type="text"
+                placeholder="Admin Name"
+                value={adminName}
+                onChange={(e) => setAdminName(e.target.value)}
+              />
+            </div>
+
+            {/* Password with Eye Toggle */}
+            <div className="input-group">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <button
+                type="button"
+                className="eye-toggle"
+                onClick={() => setShowPassword(!showPassword)}
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
+
+            {/* Login Button */}
             <button
-              type="button"
-              className="eye-toggle"
-              onClick={() => setShowPassword(!showPassword)}
-              aria-label={showPassword ? "Hide password" : "Show password"}
+              className="admin-btn"
+              type="submit"
+              disabled={loading}
             >
-              {showPassword ? <FaEyeSlash /> : <FaEye />}
+              {loading ? "Logging in…" : "Login"}
             </button>
-          </div>
 
-          {/* Login Button */}
-          <button
-            className="admin-btn"
-            onClick={handleLogin}
-            disabled={loading}
-          >
-            {loading ? "Logging in…" : "Login"}
-          </button>
+          </form>
 
           {/* Back to Portfolio — inside card */}
           <button

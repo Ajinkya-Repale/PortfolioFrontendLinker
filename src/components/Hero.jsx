@@ -31,6 +31,7 @@ export default function Hero() {
     name: "Ajinkya Repale",
     role: "Full Stack Java Developer",
     avatarUrl: "/Images/Profile.jpg",
+    resumeUrl: "",
   });
 
   const { displayed, done } = useTypingAnimation(heroData.role);
@@ -51,6 +52,7 @@ export default function Hero() {
             name: data.name || "Your Name",
             role: data.role || "Developer",
             avatarUrl: data.avatarUrl || "/Images/Profile.jpg",
+            resumeUrl: data.resumeUrl || "",
           });
         }
       } catch (err) {
@@ -88,7 +90,7 @@ export default function Hero() {
           <h2 className="hero-role">
             {displayed}
             {!done && <span className="hero-cursor">|</span>}
-            {done  && <span className="hero-cursor hero-cursor--blink">|</span>}
+            {done && <span className="hero-cursor hero-cursor--blink">|</span>}
           </h2>
 
           <p className="hero-summary">
@@ -100,12 +102,23 @@ export default function Hero() {
             <button className="btn-primary" onClick={() => scrollTo("projects")}>
               <span>View Projects</span>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
             <button className="btn-outline" onClick={() => scrollTo("contact")}>
               Contact Me
             </button>
+            {heroData.resumeUrl && (
+              <a
+                className="btn-outline"
+                href={heroData.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+              >
+                Download Resume
+              </a>
+            )}
           </div>
 
         </div>

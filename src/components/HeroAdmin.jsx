@@ -15,7 +15,7 @@ const extractId = (hero) =>
 
 export default function HeroAdmin() {
   const [heroData, setHeroData]   = useState([]);
-  const [form, setForm]           = useState({ introText: "", name: "", role: "", avatarUrl: "" });
+  const [form, setForm]           = useState({ introText: "", name: "", role: "", avatarUrl: "", resumeUrl: "" });
   const [editingId, setEditingId] = useState(null);
   const [loading, setLoading]     = useState(false);
   const [error, setError]         = useState(null);
@@ -45,7 +45,7 @@ export default function HeroAdmin() {
       await axios.post("https://portfoliobackendlinker.onrender.com/hero/add", form, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
-      setForm({ introText: "", name: "", role: "", avatarUrl: "" });
+      setForm({ introText: "", name: "", role: "", avatarUrl: "", resumeUrl: "" });
       await fetchHero();
     } catch (err) {
       console.error("Add failed:", err);
@@ -63,6 +63,7 @@ export default function HeroAdmin() {
       name:      hero.name      || "",
       role:      hero.role      || "",
       avatarUrl: hero.avatarUrl || "",
+      resumeUrl: hero.resumeUrl || "",
     });
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -78,7 +79,7 @@ export default function HeroAdmin() {
         { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );
       setEditingId(null);
-      setForm({ introText: "", name: "", role: "", avatarUrl: "" });
+      setForm({ introText: "", name: "", role: "", avatarUrl: "", resumeUrl: "" });
       await fetchHero();
     } catch (err) {
       console.error("Update failed:", err);
@@ -103,7 +104,7 @@ export default function HeroAdmin() {
 
   const handleCancel = () => {
     setEditingId(null);
-    setForm({ introText: "", name: "", role: "", avatarUrl: "" });
+    setForm({ introText: "", name: "", role: "", avatarUrl: "", resumeUrl: "" });
   };
 
   return (
@@ -167,6 +168,16 @@ export default function HeroAdmin() {
               name="avatarUrl"
               placeholder="/Images/Profile.jpg"
               value={form.avatarUrl}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="hero-field">
+            <label>Resume URL</label>
+            <input
+              name="resumeUrl"
+              placeholder="/Resume.pdf or https://..."
+              value={form.resumeUrl}
               onChange={handleChange}
             />
           </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 // Public components
 import Navbar from "./components/Navbar";
@@ -26,15 +26,9 @@ import MatrixRain from "./components/MatrixRain";
 import "./styles/global.css";
 import "./styles/AdminPanel.css";
 
-export default function App() {
-  const [dark, setDark] = useState(true);
-  const [admin, setAdmin] = useState(() => !!localStorage.getItem("token"));
-  const [backendReady, setBackendReady] = useState(false);
-  const cursorRef = useRef(null);
-
-  useEffect(() => {
-    document.body.className = dark ? "dark" : "light";
-  }, [dark]);
+// ── Reveal observer, re-runs on every route change ──────────────────────────
+function RevealObserver() {
+  const location = useLocation();
 
   useEffect(() => {
     const observe = () => {
@@ -62,7 +56,20 @@ export default function App() {
       clearTimeout(t2);
       clearTimeout(t3);
     };
-  }, [backendReady]);
+  }, [location.pathname]);
+
+  return null;
+}
+
+export default function App() {
+  const [dark, setDark] = useState(true);
+  const [admin, setAdmin] = useState(() => !!localStorage.getItem("token"));
+  const [backendReady, setBackendReady] = useState(false);
+  const cursorRef = useRef(null);
+
+  useEffect(() => {
+    document.body.className = dark ? "dark" : "light";
+  }, [dark]);
 
   // Cursor glow effect
   useEffect(() => {
@@ -119,6 +126,7 @@ export default function App() {
       <MatrixRain />
 
       <Router>
+        <RevealObserver />
         <Routes>
           <Route
             path="/"

@@ -87,6 +87,16 @@ NAV LINKS
   width: 100%;
 }
 
+/* active link (clicked or scrolled into view) */
+
+.nav-links button.active-link {
+  color: var(--accent);
+}
+
+.nav-links button.active-link::after {
+  width: 100%;
+}
+
 /* ------------------------------
 MODE BUTTON
 ------------------------------ */

@@ -11,6 +11,7 @@ import Contact from "./components/Contact";
 import Education from "./components/Education";
 import Certificates from "./components/Certificates";
 import Experience from "./components/Experience";
+import Footer from "./components/Footer";
 
 // Admin components
 import AdminLogin from "./components/AdminLogin";
@@ -141,9 +142,7 @@ export default function App() {
                 <Certificates />
                 <Experience />
                 <Contact />
-                <footer className="footer">
-                  © 2026 Ajinkya Repale — Full Stack Developer
-                </footer>
+                <Footer />
               </>
             }
           />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "../styles/AdminHero.css";
+import "../styles/FooterAdmin.css";
 
 // ── helper: safely extract MongoDB _id regardless of shape ──────────────────
 const extractId = (footer) =>
@@ -99,28 +99,28 @@ export default function FooterAdmin() {
   };
 
   return (
-    <div className="hero-admin-page">
+    <div className="footer-admin-page">
 
-      <h2 className="hero-admin-title">Footer Links</h2>
+      <h2 className="footer-admin-title">Footer Links</h2>
 
       {error && (
-        <div className="hero-error-banner">
+        <div className="footer-admin-error-banner">
           ⚠ {error}
-          <button className="btn btn-ghost btn-sm" onClick={fetchFooter}>Retry</button>
+          <button className="fa-btn fa-btn-ghost fa-btn-sm" onClick={fetchFooter}>Retry</button>
         </div>
       )}
 
-      <div className={`hero-form-card${editingId ? " hero-form-card--editing" : ""}`}>
+      <div className={`footer-admin-form-card${editingId ? " footer-admin-form-card--editing" : ""}`}>
 
-        <div className="hero-form-mode">
-          <span className={`hero-form-mode-dot${editingId ? " hero-form-mode-dot--warn" : ""}`} />
+        <div className="footer-admin-form-mode">
+          <span className={`footer-admin-mode-dot${editingId ? " footer-admin-mode-dot--warn" : ""}`} />
           {editingId
             ? `Edit Mode — ID: ${editingId}`
             : "Add footer social links"}
         </div>
 
-        <div className="hero-form-grid">
-          <div className="hero-field">
+        <div className="footer-admin-form-grid">
+          <div className="footer-admin-field">
             <label>LinkedIn URL</label>
             <input
               name="linkedinUrl"
@@ -130,7 +130,7 @@ export default function FooterAdmin() {
             />
           </div>
 
-          <div className="hero-field">
+          <div className="footer-admin-field">
             <label>GitHub URL</label>
             <input
               name="githubUrl"
@@ -140,7 +140,7 @@ export default function FooterAdmin() {
             />
           </div>
 
-          <div className="hero-field">
+          <div className="footer-admin-field">
             <label>Email</label>
             <input
               name="email"
@@ -151,33 +151,33 @@ export default function FooterAdmin() {
           </div>
         </div>
 
-        <div className="hero-form-actions">
+        <div className="footer-admin-form-actions">
           {editingId ? (
             <>
-              <button className="btn btn-save" onClick={handleUpdate} disabled={loading}>
+              <button className="fa-btn fa-btn-save" onClick={handleUpdate} disabled={loading}>
                 {loading ? "Saving…" : "✓ Save Changes"}
               </button>
-              <button className="btn btn-ghost" onClick={handleCancel}>
+              <button className="fa-btn fa-btn-ghost" onClick={handleCancel}>
                 ✕ Cancel
               </button>
             </>
           ) : (
-            <button className="btn btn-primary" onClick={handleAdd} disabled={loading}>
+            <button className="fa-btn fa-btn-primary" onClick={handleAdd} disabled={loading}>
               {loading ? "Adding…" : "+ Add Entry"}
             </button>
           )}
         </div>
       </div>
 
-      <div className="hero-list-header">
+      <div className="footer-admin-list-header">
         <span>Saved Entries</span>
-        <span className="badge badge-count">{footerData.length}</span>
+        <span className="fa-badge fa-badge-count">{footerData.length}</span>
       </div>
 
-      <div className="hero-list">
+      <div className="footer-admin-list">
         {footerData.length === 0 ? (
-          <div className="hero-empty">
-            <div className="hero-empty-icon">🔗</div>
+          <div className="footer-admin-empty">
+            <div className="footer-admin-empty-icon">🔗</div>
             {error ? "Failed to load entries." : "No footer entries yet. Add one above."}
           </div>
         ) : (
@@ -185,32 +185,32 @@ export default function FooterAdmin() {
             const id = extractId(footer);
             const isEditing = id && editingId === id;
             return (
-              <div key={id || Math.random()} className={`hero-item${isEditing ? " hero-item--editing" : ""}`}>
+              <div key={id || Math.random()} className={`footer-admin-item${isEditing ? " footer-admin-item--editing" : ""}`}>
 
-                <div className="hero-item-info">
-                  <div className="hero-item-name">{footer.email || "No email set"}</div>
-                  <div className="hero-item-meta">
-                    {footer.linkedinUrl && <span className="badge badge-blue">LinkedIn</span>}
-                    {footer.githubUrl && <span className="badge badge-blue">GitHub</span>}
+                <div className="footer-admin-item-info">
+                  <div className="footer-admin-item-name">{footer.email || "No email set"}</div>
+                  <div className="footer-admin-item-meta">
+                    {footer.linkedinUrl && <span className="fa-badge fa-badge-blue">LinkedIn</span>}
+                    {footer.githubUrl && <span className="fa-badge fa-badge-blue">GitHub</span>}
                   </div>
                 </div>
 
-                <div className="hero-item-actions">
+                <div className="footer-admin-item-actions">
                   {isEditing ? (
                     <>
-                      <button className="btn btn-save btn-sm" onClick={handleUpdate} disabled={loading}>
+                      <button className="fa-btn fa-btn-save fa-btn-sm" onClick={handleUpdate} disabled={loading}>
                         {loading ? "…" : "✓ Save"}
                       </button>
-                      <button className="btn btn-ghost btn-sm" onClick={handleCancel}>
+                      <button className="fa-btn fa-btn-ghost fa-btn-sm" onClick={handleCancel}>
                         ✕ Cancel
                       </button>
                     </>
                   ) : (
                     <>
-                      <button className="btn btn-ghost btn-sm" onClick={() => handleEdit(footer)}>
+                      <button className="fa-btn fa-btn-ghost fa-btn-sm" onClick={() => handleEdit(footer)}>
                         ✏ Edit
                       </button>
-                      <button className="btn btn-danger btn-sm" onClick={() => handleDelete(id)}>
+                      <button className="fa-btn fa-btn-danger fa-btn-sm" onClick={() => handleDelete(id)}>
                         🗑 Delete
                       </button>
                     </>

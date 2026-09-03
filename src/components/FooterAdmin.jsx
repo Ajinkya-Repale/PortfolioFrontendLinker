@@ -11,10 +11,10 @@ const extractId = (footer) =>
 
 export default function FooterAdmin() {
   const [footerData, setFooterData] = useState([]);
-  const [form, setForm]             = useState({ linkedinUrl: "", githubUrl: "", email: "" });
-  const [editingId, setEditingId]   = useState(null);
-  const [loading, setLoading]       = useState(false);
-  const [error, setError]           = useState(null);
+  const [form, setForm] = useState({ linkedinUrl: "", githubUrl: "", email: "" });
+  const [editingId, setEditingId] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => { fetchFooter(); }, []);
 
@@ -53,8 +53,8 @@ export default function FooterAdmin() {
     setEditingId(id);
     setForm({
       linkedinUrl: footer.linkedinUrl || "",
-      githubUrl:   footer.githubUrl   || "",
-      email:       footer.email       || "",
+      githubUrl: footer.githubUrl || "",
+      email: footer.email || "",
     });
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -154,10 +154,10 @@ export default function FooterAdmin() {
         <div className="footer-admin-form-actions">
           {editingId ? (
             <>
-              <button className="fa-btn fa-btn-save" onClick={handleUpdate} disabled={loading}>
-                {loading ? "Saving…" : "✓ Save Changes"}
+              <button className="fa-btn fa-btn-save fa-btn-sm" onClick={handleUpdate} disabled={loading}>
+                {loading ? "…" : "✓ Save"}
               </button>
-              <button className="fa-btn fa-btn-ghost" onClick={handleCancel}>
+              <button className="fa-btn fa-btn-ghost fa-btn-sm" onClick={handleCancel}>
                 ✕ Cancel
               </button>
             </>
@@ -208,10 +208,16 @@ export default function FooterAdmin() {
                   ) : (
                     <>
                       <button className="fa-btn fa-btn-ghost fa-btn-sm" onClick={() => handleEdit(footer)}>
-                        ✏ Edit
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                          <path d="M11.5 2.5l2 2L5 13H3v-2l8.5-8.5z" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                        Edit
                       </button>
                       <button className="fa-btn fa-btn-danger fa-btn-sm" onClick={() => handleDelete(id)}>
-                        🗑 Delete
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                          <path d="M2.5 4h11M6 4V2.5h4V4M6.5 7.5v4M9.5 7.5v4M3.5 4l.7 8.5A1 1 0 005.2 13.5h5.6a1 1 0 001-0.9L12.5 4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                        Delete
                       </button>
                     </>
                   )}

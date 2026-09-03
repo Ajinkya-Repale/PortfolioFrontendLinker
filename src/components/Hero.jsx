@@ -116,7 +116,10 @@ export default function Hero() {
                 rel="noopener noreferrer"
                 download
               >
-                Download Resume
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M8 2v7m0 0l-3-3m3 3l3-3M3 13h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <span> Resume</span>
               </a>
             )}
           </div>

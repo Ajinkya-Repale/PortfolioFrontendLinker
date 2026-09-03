@@ -2,6 +2,76 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/AdminProjects.css";
 
+/* ── inline SVG icons (replace emoji) ───────────────────────────────── */
+const IconWarning = (p) => (
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z" />
+    <line x1="12" y1="9" x2="12" y2="13" />
+    <line x1="12" y1="17" x2="12.01" y2="17" />
+  </svg>
+);
+
+const IconCheck = (p) => (
+  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <polyline points="20 6 9 17 4 12" />
+  </svg>
+);
+
+const IconX = (p) => (
+  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <line x1="18" y1="6" x2="6" y2="18" />
+    <line x1="6" y1="6" x2="18" y2="18" />
+  </svg>
+);
+
+const IconRocket = (p) => (
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09Z" />
+    <path d="M12 15c-3.5-3.5-4.5-8-4.5-11 3 0 7.5 1 11 4.5-1.5 1.5-3.5 3.5-6.5 6.5Z" />
+    <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
+    <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+  </svg>
+);
+
+const IconCode = (p) => (
+  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <polyline points="16 18 22 12 16 6" />
+    <polyline points="8 6 2 12 8 18" />
+  </svg>
+);
+
+const IconExternalLink = (p) => (
+  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+    <polyline points="15 3 21 3 21 9" />
+    <line x1="10" y1="14" x2="21" y2="3" />
+  </svg>
+);
+
+const IconClock = (p) => (
+  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <circle cx="12" cy="12" r="10" />
+    <polyline points="12 6 12 12 16 14" />
+  </svg>
+);
+
+const IconEdit = (p) => (
+  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+    <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4Z" />
+  </svg>
+);
+
+const IconTrash = (p) => (
+  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <polyline points="3 6 5 6 21 6" />
+    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+    <line x1="10" y1="11" x2="10" y2="17" />
+    <line x1="14" y1="11" x2="14" y2="17" />
+  </svg>
+);
+/* ───────────────────────────────────────────────────────────────────── */
+
 const extractId = (item) =>
   item?._id?.$oid || item?._id || item?.id || null;
 
@@ -127,7 +197,7 @@ export default function ProjectsAdmin() {
 
       {error && (
         <div className="projects-error-banner">
-          ⚠ {error}
+          <IconWarning /> {error}
           <button className="btn btn-ghost btn-sm" onClick={fetchProjects}>Retry</button>
         </div>
       )}
@@ -185,9 +255,9 @@ export default function ProjectsAdmin() {
           {editingId ? (
             <>
               <button className="btn btn-save" onClick={handleUpdate} disabled={loading}>
-                {loading ? "Saving…" : "✓ Save Changes"}
+                {loading ? "Saving…" : <><IconCheck /> Save Changes</>}
               </button>
-              <button className="btn btn-ghost" onClick={handleCancel}>✕ Cancel</button>
+              <button className="btn btn-ghost" onClick={handleCancel}><IconX /> Cancel</button>
             </>
           ) : (
             <button className="btn btn-primary" onClick={handleAdd} disabled={loading}>
@@ -207,7 +277,7 @@ export default function ProjectsAdmin() {
       <div className="projects-list">
         {projects.length === 0 ? (
           <div className="projects-empty">
-            <div className="projects-empty-icon">🚀</div>
+            <div className="projects-empty-icon"><IconRocket /></div>
             No projects yet. Add one above.
           </div>
         ) : (
@@ -222,7 +292,7 @@ export default function ProjectsAdmin() {
                   {project.image ? (
                     <img src={project.image} alt={project.title} />
                   ) : (
-                    <div className="project-item-thumb-placeholder">🚀</div>
+                    <div className="project-item-thumb-placeholder"><IconRocket width="20" height="20" /></div>
                   )}
                 </div>
 
@@ -251,17 +321,17 @@ export default function ProjectsAdmin() {
                       <a href={project.github} target="_blank" rel="noreferrer"
                         className="project-item-link project-item-link--github"
                         onClick={(e) => e.stopPropagation()}>
-                        ⌥ View Code
+                        <IconCode /> View Code
                       </a>
                     )}
                     {project.liveDemo ? (
                       <a href={project.liveDemo} target="_blank" rel="noreferrer"
                         className="project-item-link project-item-link--live"
                         onClick={(e) => e.stopPropagation()}>
-                        ↗ Live Demo
+                        <IconExternalLink /> Live Demo
                       </a>
                     ) : (
-                      <span className="project-item-link--pending">⏳ Live soon</span>
+                      <span className="project-item-link--pending"><IconClock /> Live soon</span>
                     )}
                   </div>
                 </div>
@@ -271,14 +341,14 @@ export default function ProjectsAdmin() {
                   {isEditing ? (
                     <>
                       <button className="btn btn-save btn-sm" onClick={handleUpdate} disabled={loading}>
-                        {loading ? "…" : "✓ Save"}
+                        {loading ? "…" : <><IconCheck /> Save</>}
                       </button>
-                      <button className="btn btn-ghost btn-sm" onClick={handleCancel}>✕</button>
+                      <button className="btn btn-ghost btn-sm" onClick={handleCancel}><IconX /></button>
                     </>
                   ) : (
                     <>
-                      <button className="btn btn-ghost btn-sm" onClick={() => handleEdit(project)}>✏ Edit</button>
-                      <button className="btn btn-danger btn-sm" onClick={() => handleDelete(project)}>🗑 Delete</button>
+                      <button className="btn btn-ghost btn-sm" onClick={() => handleEdit(project)}><IconEdit /> Edit</button>
+                      <button className="btn btn-danger btn-sm" onClick={() => handleDelete(project)}><IconTrash /> Delete</button>
                     </>
                   )}
                 </div>

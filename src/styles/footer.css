@@ -1,0 +1,94 @@
+/* ------------------------------
+FOOTER WRAP
+------------------------------ */
+
+.footer-wrap {
+  position: relative;
+}
+
+/* ------------------------------
+BACK TO TOP NOTCH
+------------------------------ */
+
+.footer-notch {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 70px;
+  height: 36px;
+  margin: 0 auto;
+  padding-top: 8px;
+  background-color: #0e1730;
+  border-radius: 70px 70px 0 0;
+  cursor: pointer;
+  color: #7ba3f5;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.footer-notch:hover {
+  background-color: #131f42;
+  color: #a8c0ff;
+}
+
+/* ------------------------------
+FOOTER BAR
+------------------------------ */
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  background-color: #0e1730;
+  padding: 20px 8%;
+  border-radius: 0 0 12px 12px;
+}
+
+.footer-copy {
+  color: #8a9bc9;
+  font-size: 0.9rem;
+}
+
+/* ------------------------------
+ICON BUTTONS
+------------------------------ */
+
+.footer-icons {
+  display: flex;
+  gap: 14px;
+}
+
+.footer-icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: #131f42;
+  border: 1px solid #2a3a6a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7ba3f5;
+  font-size: 18px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+.footer-icon-btn:hover {
+  background-color: #1a294f;
+  border-color: #3b5bfd;
+  color: #a8c0ff;
+  transform: translateY(-2px);
+}
+
+/* ------------------------------
+MOBILE
+------------------------------ */
+
+@media (max-width: 480px) {
+  .footer {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 6%;
+  }
+}
